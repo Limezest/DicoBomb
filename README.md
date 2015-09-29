@@ -15,7 +15,7 @@ ___
 
 ### Contraintes techniques
 * Architecture client / serveur.
-* Fluidité du j eu
+* Fluidité du jeu
 * Interface + Érgonomie
 
 ### Scénario de solution
