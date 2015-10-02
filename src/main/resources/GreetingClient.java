@@ -25,7 +25,7 @@ public class GreetingClient
                     new DataInputStream(inFromServer);
             System.out.println("Server says " + in.readUTF());
 
-//            client.close();
+            client.close();
         }catch(IOException e)
         {
             e.printStackTrace();

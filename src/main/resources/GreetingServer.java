@@ -6,33 +6,29 @@ public class GreetingServer extends Thread {
 
     public GreetingServer(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        serverSocket.setSoTimeout(10000);
+        serverSocket.setSoTimeout(0);
     }
 
     public void run() {
         while(true) {
             try {
-                System.out.println("Waiting for client on port " +
-                        serverSocket.getLocalPort() + "...");
+                System.out.println("\n- Waiting for client on port " + serverSocket.getLocalPort() + "...");
                 Socket server = serverSocket.accept();
-                System.out.println("Connected to "
-                        + server.getRemoteSocketAddress());
+                System.out.println("\nConnected to " + server.getRemoteSocketAddress());
 
-                DataInputStream in =
-                        new DataInputStream(server.getInputStream());
+                DataInputStream in = new DataInputStream(server.getInputStream());
                 System.out.println(in.readUTF());
 
-                DataOutputStream out =
-                        new DataOutputStream(server.getOutputStream());
-                out.writeUTF("Thank you for connecting to "
-                        + server.getLocalSocketAddress() + "\nGoodbye!");
+                DataOutputStream out = new DataOutputStream(server.getOutputStream());
+                out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress() + "\nGoodbye!");
 
                 server.close();
 
             } catch(SocketTimeoutException s) {
                 System.out.println("Socket timed out!");
                 break;
-            } catch(IOException e) {
+            }
+            catch(IOException e) {
                 e.printStackTrace();
                 break;
             }
