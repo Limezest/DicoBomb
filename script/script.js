@@ -1,12 +1,14 @@
-var lazy = require("lazy");
+var Lazy = require("lazy");
 var fs = require("graceful-fs");
+var unidecode = require('unidecode');
 var word;
 
-new lazy(fs.createReadStream('./Dictionnaire.txt'))
+new Lazy(fs.createReadStream('./Dictionnaire.txt'))
      .lines
      .forEach(function(line){
-		 word = line.toString();
-		 fs.writeFile("lettres/" + word[0] + ".txt", word, function(err) {
+		 //  Supprime les accents et passe en minuscule :
+		 word = unidecode(line.toString().toLowerCase());
+		 fs.appendFile("dictionnaire/" + word[0] + ".txt", word + "\n", function(err) {
 		    if(err) {
 		        return console.log(err, word);
 		    }
