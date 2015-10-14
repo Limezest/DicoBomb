@@ -1,0 +1,18 @@
+{
+  "name": "Dictionnaire",
+  "version": "1.0.0",
+  "description": "Formatte le fichier Dictionnaire.txt : ignore la casse et les accents, et trie suivant le premier caractère.",
+  "main": "script.js",
+  "dependencies": {
+    "graceful-fs": "^4.1.2",
+    "unidecode": "^0.1.7",
+    "lazy": "^1.0.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+	"start": "npm install && node script.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "csabourault",
+  "license": "ISC"
+}
