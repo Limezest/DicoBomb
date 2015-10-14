@@ -6,4 +6,5 @@ public interface ManagerInterface {
 	public static void addItem(){};
 	public static void delItem(){};
 	public static ArrayList<?> getItems(){return null;};
+	public static boolean itemExist(){return true;};
 }

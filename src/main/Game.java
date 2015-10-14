@@ -3,15 +3,37 @@ package main;
 import java.util.ArrayList;
 
 public class Game {
-	private Dico Dictonnary;
-	private ArrayList<User> users;
-	public Game(Dico dictonnary, ArrayList<User> users) {
+	//Attributs
+	private ArrayList<String> users = new ArrayList<String>();
+	private String name;
+	
+	//Contructeur
+	public Game(String gameName) {
 		super();
-		Dictonnary = dictonnary;
-		this.users = users;
+		this.name = gameName;
 	}
+	
+	//Methodes : getters et setters
+	public String getName(){
+		return this.name;
+	}
+	public ArrayList<String> getUsers(){
+		return users;
+	}
+	//Methodes : autres
+
+	public void addUserToGame(String username){
+		users.add(username);
+	}
+	public void delUserToGame(String username) {
+		users.remove(username);
+	}
+	
+	//Methodes : ToString()
 	@Override
 	public String toString() {
-		return "Game [Dictonnary=" + Dictonnary + ", users=" + users + "]";
+		return "Game [users=" + users + ", name=" + name + "]";
 	}
+
+
 }
