@@ -1,5 +1,7 @@
 # DicoBomb
 ___
+####Planning Gantt :
+https://gnie-logicielle.planzone.com/pz/project/3/view
 
 ### Identifier les rôles
 * **Lens** : Maitrîse d'œuvre -> Jeu
