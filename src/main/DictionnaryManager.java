@@ -13,13 +13,29 @@ public class DictionnaryManager {
 	public String toString() {
 		return "DictionnaryManager [dictionnaires=" + dictionnaries + "]";
 	}
-	
-	
+	public boolean addDictionnary(Dictionnary dico)
+	{
+		boolean b = false;
+		this.dictionnaries.add(dico);
+		if (this.dictionnaries.contains(dico))
+		{
+			b= true;
+		}
+		return b;
+	}
+	public boolean deleteDictionnary(Dictionnary dico)
+	{
+		this.dictionnaries.remove(dico);
+		return (!this.dictionnaries.contains(dico));
+		
+	}
 
 	public static void main(String[] args) {
 		
-		Dictionnary monDico = new Dictionnary("dictionnaire Français","C:/");
+		Dictionnary monDico = new Dictionnary("dictionnaire Français","dictionnaire");
 		System.out.println(monDico);
+		
+		System.out.println(monDico.wordExiste("mouillera"));
 	}
 	
 	

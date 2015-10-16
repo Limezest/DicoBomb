@@ -7,10 +7,7 @@ public class GameManager implements ManagerInterface {
 	private static ArrayList<Game> games = new ArrayList<Game>();
 
 	//Methodes : ManagerInterface
-	public static ArrayList<Game> getItems() {
-		return games;
-	}
-
+	
 	public static void addItem(String gameName){
 		games.add(new Game(gameName));
 	}
@@ -60,5 +57,25 @@ public class GameManager implements ManagerInterface {
 			game.delUserToGame(username);
 			user.setGame(null);
 		}
+	}
+
+	public void addItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<?> getItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean itemExist() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
