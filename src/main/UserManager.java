@@ -7,7 +7,7 @@ public class UserManager implements ManagerInterface {
 	private static ArrayList<User> users = new ArrayList<User>();
 
 	//Methodes : ManagerInterface
-	public static ArrayList<User> getItems() {
+	public ArrayList<User> getItems() {
 		return users;
 	}
 
@@ -39,4 +39,19 @@ public class UserManager implements ManagerInterface {
 		return null;
 	}
 	//Methodes : Autres
+
+	public void addItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delItem() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean itemExist() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -35,7 +35,7 @@ public class DictionnaryManager {
 		Dictionnary monDico = new Dictionnary("dictionnaire Français","dictionnaire");
 		System.out.println(monDico);
 		
-		System.out.println(monDico.wordExiste("jouir"));
+		System.out.println(monDico.wordExiste("mouillera"));
 	}
 	
 	
