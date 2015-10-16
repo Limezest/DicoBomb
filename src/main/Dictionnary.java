@@ -2,6 +2,7 @@ package main;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dictionnary {
 	private String name;
@@ -16,7 +17,7 @@ public class Dictionnary {
 	public boolean wordExiste(String word){
 		boolean b=false;
 		try{
-			String dico_first_word = "src\\main\\"+path+'\\'+word.charAt(0)+".txt";
+			String dico_first_word = path+'\\'+word.charAt(0)+".txt";
 			System.out.println("chemin dico :" + dico_first_word);
 			InputStream ips=new FileInputStream(dico_first_word); 
 			InputStreamReader ipsr=new InputStreamReader(ips);
@@ -40,29 +41,38 @@ public class Dictionnary {
 		return b;
 	}
 	public String genPattern(){
-		int randomNum = 0 + (int)(Math.random()*25); 
+		int randomNum = 0 + (int)(Math.random()*25); //génération du nombre aleatoire correspondant au nom du dico
+		/*Génération de l'alphabet*/
 		String first_word = "";
 		for (int i = 0; i < 26; i++) {
-			first_word = (String)(97 + i);
+			first_word += ((char)(97 + i));
 		}
-		ArrayList<String> liste_mots;
+		int nb_mot=0;
+		List<String> liste_mots = new ArrayList<String>();
 		try{
 			
-			String dico_first_word = "src\\main\\"+path+'\\'+word.charAt(0)+".txt";
+			String dico_first_word = this.path+'\\'+first_word.charAt(randomNum)+".txt";
 			System.out.println("chemin dico :" + dico_first_word);
 			InputStream ips=new FileInputStream(dico_first_word); 
 			InputStreamReader ipsr=new InputStreamReader(ips);
 			BufferedReader br=new BufferedReader(ipsr);
 			String ligne;
 			while ((ligne=br.readLine())!=null){
-				liste_mots.add(ligne);		
+				liste_mots.add(ligne);	
+				nb_mot++;
 			}
 			br.close(); 
 		}		
 		catch (Exception e){
 			System.out.println(e.toString());
 		}
-		return liste_mots.get(randomNum);
+		randomNum = 0 + (int)(Math.random()*(nb_mot-1));
+		 liste_mots.get(randomNum);
+		while(liste_mots.get(randomNum).length()<3)
+		{
+			randomNum = 0 + (int)(Math.random()*(nb_mot-1));
+		}
+		return getPattern(liste_mots.get(randomNum));
 	}
 	
 	@Override
@@ -70,7 +80,14 @@ public class Dictionnary {
 		return "Dictionnary [name=" + name + ", path=" + path + "]";
 	}
 	
-
+	private String getPattern(String word)
+	{
+		String pattern;
+		int nb_char_pattern = 2 + (int)(Math.random()*(3));
+		int randomNum = 0 + (int)(Math.random()*(word.length()-4));
+		pattern = word.substring(randomNum, randomNum + nb_char_pattern);
+		return pattern;
+	}
 	public static void main(String[] args) {
 		
 		Dictionnary monDico = new Dictionnary("dictionnaireFrançais","C:/");

@@ -32,10 +32,11 @@ public class DictionnaryManager {
 
 	public static void main(String[] args) {
 		
-		Dictionnary monDico = new Dictionnary("dictionnaire Français","dictionnaire");
+		Dictionnary monDico = new Dictionnary("dictionnaire Français","C:\\Users\\LensHunnel\\git\\DicoBomb\\src\\main\\dictionnaire");
 		System.out.println(monDico);
 		
 		System.out.println(monDico.wordExiste("mouillera"));
+		System.out.println(monDico.genPattern());
 	}
 	
 	
