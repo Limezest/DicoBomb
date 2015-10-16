@@ -1,12 +1,13 @@
 package main;
 
 import java.util.ArrayList;
+import java.math.*;
 
 public class GameManager implements ManagerInterface {
-	//Attributs
+	// Attributs
 	private static ArrayList<Game> games = new ArrayList<Game>();
 
-	//Methodes : ManagerInterface
+	// Methodes : ManagerInterface
 	public static ArrayList<Game> getItems() {
 		return games;
 	}
@@ -20,10 +21,11 @@ public class GameManager implements ManagerInterface {
 	}
 	
 	public static boolean itemExist(String gameName){
+		String itemName;
 		for (Game item : games) {
-			String itemName = item.getName();
+			itemName = item.getName();
 			if (itemName.compareTo(gameName) == 0){
-				System.out.println("Cette partie existe :"+itemName);
+				//System.out.println("Cette partie existe :"+itemName);
 				return true;
 			}
 		}
@@ -31,8 +33,9 @@ public class GameManager implements ManagerInterface {
 	}
 
 	public static Game getItem(String gamename){
+		String itemName;
 		for (Game item : games) {
-			String itemName = item.getName();
+			itemName = item.getName();
 			if (itemName.compareTo(gamename) == 0 ){
 				return item;
 			}
@@ -40,8 +43,8 @@ public class GameManager implements ManagerInterface {
 		return null;
 	}
 	
-	//Methodes : Autres
-	public static void addUserToGame(String username, String gamename){
+	// Methodes : Autres
+	public static void joinGame(String username, String gamename){
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)){
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
@@ -49,10 +52,10 @@ public class GameManager implements ManagerInterface {
 			game.addUserToGame(username);
 			user.setGame(game.getName());
 		}
-		else { System.out.println("Probleme");}
+		else { System.out.println("Probleme joinGame");}
 	}
 
-	public static void delUserToGame(String username, String gamename){
+	public static void quitGame(String username, String gamename){
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)){
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
@@ -60,5 +63,15 @@ public class GameManager implements ManagerInterface {
 			game.delUserToGame(username);
 			user.setGame(null);
 		}
+		else { System.out.println("Probleme quitGame");}
+	}
+
+	public static void startGame(String gamename){
+		System.out.println("Lancement de la partie :"+gamename);
+		
+		// Selection aléatoire de l'utilisateur
+		Game game = getItem(gamename);
+		int random = (int) (Math.random()*(game.getUsersInGame().size())+1);
+		System.out.println(game.getUsersInGame().get(random-1));
 	}
 }
