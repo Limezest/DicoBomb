@@ -1,0 +1,70 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+
+public class Jeu {
+
+	private JFrame frame;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Jeu window = new Jeu();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Jeu() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1119, 994);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.EAST);
+		
+		JTextArea textArea = new JTextArea();
+		panel.add(textArea);
+		
+		JPanel panel_1 = new JPanel();
+		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(null);
+		
+		JButton button = new JButton("Envoyer du SEL");
+		button.setBounds(245, 419, 143, 29);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.add(button);
+		
+		textField = new JTextField();
+		textField.setBounds(808, 914, 267, 22);
+		panel_1.add(textField);
+		textField.setColumns(10);
+	}
+}
