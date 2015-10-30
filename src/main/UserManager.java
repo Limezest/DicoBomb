@@ -3,16 +3,17 @@ import java.util.ArrayList;
 
 
 public class UserManager implements ManagerInterface {
-	//Attributs
+	// Attributs
 	private static ArrayList<User> users = new ArrayList<User>();
 
-	//Methodes : ManagerInterface
-	public ArrayList<User> getItems() {
+	// Methodes : ManagerInterface
+	public static ArrayList<User> getItems() {
 		return users;
 	}
 
 	public static void addItem(String name){
 		users.add(new User(name));
+		//System.out.println("Ajout de :"+name);
 	}
 	
 	public static void delItem(String username){
@@ -20,8 +21,9 @@ public class UserManager implements ManagerInterface {
 	}
 	
 	public static boolean itemExist(String name){
+		String itemName;
 		for (User item : users) {
-			String itemName = item.getName();
+			itemName = item.getName();
 			if (itemName.compareTo(name) == 0){
 				return true;
 			}
@@ -30,28 +32,14 @@ public class UserManager implements ManagerInterface {
 	}
 	
 	public static User getItem(String username){
+		String itemName;
 		for (User item : users) {
-			String itemName = item.getName();
+			itemName = item.getName();
 			if (itemName.compareTo(username) == 0 ){
 				return item;
 			}
 		}
 		return null;
 	}
-	//Methodes : Autres
-
-	public void addItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void delItem() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean itemExist() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	// Methodes : Autres
 }

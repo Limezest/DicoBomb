@@ -2,9 +2,9 @@ package main;
 
 import java.util.ArrayList;
 
-public interface ManagerInterface {
-	public  void addItem();
-	public  void delItem();
-	public  ArrayList<?> getItems();
-	public  boolean itemExist();
+public  interface ManagerInterface {
+	public static void addItem(){};
+	public static void delItem(){};
+	public static ArrayList<?> getItems(){return null;};
+	public static boolean itemExist(){return true;};
 }

@@ -7,17 +7,25 @@ import java.util.List;
 public class Dictionnary {
 	private String name;
 	private String path;
-	
+	private String osType_slash ;
 	
 
 	public Dictionnary(String name, String path) {
 		this.name = name;
 		this.path = path;
+		if( System.getProperty ( "os.name" ).contains("Windows"))
+		{
+			this.osType_slash ="\\";
+		}
+		else {
+			this.osType_slash ="/";
+		}
+		 
 	}
 	public boolean wordExiste(String word){
 		boolean b=false;
 		try{
-			String dico_first_word = path+'\\'+word.charAt(0)+".txt";
+			String dico_first_word = path+osType_slash+word.charAt(0)+".txt";
 			System.out.println("chemin dico :" + dico_first_word);
 			InputStream ips=new FileInputStream(dico_first_word); 
 			InputStreamReader ipsr=new InputStreamReader(ips);
@@ -51,7 +59,7 @@ public class Dictionnary {
 		List<String> liste_mots = new ArrayList<String>();
 		try{
 			
-			String dico_first_word = this.path+'\\'+first_word.charAt(randomNum)+".txt";
+			String dico_first_word = this.path+osType_slash+first_word.charAt(randomNum)+".txt";
 			System.out.println("chemin dico :" + dico_first_word);
 			InputStream ips=new FileInputStream(dico_first_word); 
 			InputStreamReader ipsr=new InputStreamReader(ips);
@@ -90,7 +98,7 @@ public class Dictionnary {
 	}
 	public static void main(String[] args) {
 		
-		Dictionnary monDico = new Dictionnary("dictionnaireFrançais","C:/");
+		Dictionnary monDico = new Dictionnary("dictionnaireFrançais","dictionnaire");
 		System.out.println(monDico);
 	}
 
