@@ -2,7 +2,7 @@ package main;
 import java.util.ArrayList;
 
 
-public class UserManager implements ManagerInterface {
+public class UserManager implements ManagerInterface, UserManagerInterface {
 	// Attributs
 	private static ArrayList<User> users = new ArrayList<User>();
 
@@ -31,7 +31,7 @@ public class UserManager implements ManagerInterface {
 		return false;
 	}
 	
-	public static User getItem(String username){
+	public  User getItem(String username){
 		String itemName;
 		for (User item : users) {
 			itemName = item.getName();

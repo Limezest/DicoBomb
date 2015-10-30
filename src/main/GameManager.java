@@ -1,9 +1,17 @@
 package main;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class GameManager implements ManagerInterface {
+public  class GameManager extends UnicastRemoteObject implements ManagerInterface, GameManagerInterface  {
+	protected GameManager() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	// Attributs
 	private static ArrayList<Game> games = new ArrayList<Game>();
 
@@ -44,7 +52,7 @@ public abstract class GameManager implements ManagerInterface {
 	}
 	
 	// Methodes : Parties
-	public static void joinGame(String username, String gamename){
+	public void joinGame(String username, String gamename){
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)){
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
@@ -78,14 +86,14 @@ public abstract class GameManager implements ManagerInterface {
 		System.out.println("Au tour de :"+game.getUsersInGame().get(random-1));
 	}
 
-	public static void nextPlayer(String gameName){
+	public void nextPlayer(String gameName){
 		Game game = getItem(gameName);
 		String pattern = game.getPattern();
 		String word;
 		Scanner keyboard = new Scanner(System.in);
 		String currentUser = game.getUsersInGame().get(game.getCurrentUser());
 		System.out.println("C'est au tour de :"+currentUser);
-		System.out.println("Voici un patter :"+pattern);
+		System.out.println("Voici un pattern :"+pattern);
 		do {
 				System.out.println("Entre un mot");
 				word=(keyboard.nextLine());
