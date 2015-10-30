@@ -18,7 +18,7 @@ public class DictionnaryManager {
 
 	public static void main(String[] args) {
 		
-		Dictionnary monDico = new Dictionnary("dictionnaire Français","C:/");
+		Dictionnary monDico = new Dictionnary("dictionnaire Franï¿½ais","C:/");
 		System.out.println(monDico);
 	}
 	

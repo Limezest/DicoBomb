@@ -16,7 +16,7 @@ public class MessageHandler {
          		break;
         	case "user:getList" :  System.out.println(UserManager.getItems());
          		break;
-        	case "game:newGame" :  GameManager.addItem(parameter);
+        	case "game:newGame" :  GameManager.addItem((parameter.split(","))[0], (parameter.split(","))[1]);
          		break;
         	case "game:delGame" :  GameManager.delItem(parameter);
          		break;
@@ -28,8 +28,6 @@ public class MessageHandler {
          		break;
         	case "game:startGame" :  GameManager.startGame(parameter);
      			break;
-        	case "send:word" 	:  UserManager.addItem(parameter);
-         		break;
 		}
 	}
 }

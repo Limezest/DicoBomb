@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Game {
 	// Attributs
 	private ArrayList<String> usersInGame = new ArrayList<String>();
-	private Dictionnary dico;
+	protected Dictionnary dico;
 	private String name;
-	private String currentUser;
+	private int currentUser;
 	
 	// Contructeur
-	public Game(String gamename) {
+	public Game(String gamename,String dicoName) {
 		super();
 		this.name = gamename;
-		this.dico = new Dictionnary("Dico 1", "C:/");
+		this.dico = new Dictionnary("dico1","/Users/benoitmenard/Documents/genie_logiciel/git/src/main");
 	}
 	
 	// Methodes : getters et setters
@@ -22,6 +22,12 @@ public class Game {
 	}
 	public ArrayList<String> getUsersInGame(){
 		return usersInGame;
+	}
+	public void setCurrentUser(int userName){
+		this.currentUser = userName;
+	}
+	public int getCurrentUser(){
+		return this.currentUser;
 	}
 	// Methodes : users
 
@@ -33,15 +39,12 @@ public class Game {
 	}
 	
 	// Methodes : Dico
-	/*public void addWord(String word){
-		dico.add(word);
+	public boolean testWord(String word) {
+		return dico.wordExiste(word);
 	}
-	public void testWord(String word) {
-		dico.testWord(username);
+	public String getPattern() {
+		return dico.genPattern();
 	}
-	public void getPattern(String username) {
-		dico.getPattern(username);
-	}*/
 	
 	// Methodes : ToString()
 	@Override
