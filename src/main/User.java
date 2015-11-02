@@ -1,10 +1,10 @@
 package main;
 
-public class User {
+public class User implements java.io.Serializable {
 	// Attributs
 	private String name;
 	private String game;
-
+	private static final long serialVersionUID = 1L;
 	// Contructeur
 	public User(String name) {
 		super();

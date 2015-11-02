@@ -4,7 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dictionnary {
+public class Dictionnary implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2940976109874271907L;
 	private String name;
 	private String path;
 	private String osType_slash ;
@@ -49,8 +53,8 @@ public class Dictionnary {
 		return b;
 	}
 	public String genPattern(){
-		int randomNum = 0 + (int)(Math.random()*25); //génération du nombre aleatoire correspondant au nom du dico
-		/*Génération de l'alphabet*/
+		int randomNum = 0 + (int)(Math.random()*25); //gï¿½nï¿½ration du nombre aleatoire correspondant au nom du dico
+		/*Gï¿½nï¿½ration de l'alphabet*/
 		String first_word = "";
 		for (int i = 0; i < 26; i++) {
 			first_word += ((char)(97 + i));
@@ -98,7 +102,7 @@ public class Dictionnary {
 	}
 	public static void main(String[] args) {
 		
-		Dictionnary monDico = new Dictionnary("dictionnaireFrançais","dictionnaire");
+		Dictionnary monDico = new Dictionnary("dictionnaireFranï¿½ais","dictionnaire");
 		System.out.println(monDico);
 	}
 

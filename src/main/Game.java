@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class Game {
+public class Game  implements java.io.Serializable {
 	// Attributs
 	private ArrayList<String> usersInGame = new ArrayList<String>();
 	protected Dictionnary dico;

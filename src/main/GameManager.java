@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public  class GameManager extends UnicastRemoteObject implements ManagerInterface, GameManagerInterface  {
+public  class GameManager   {
 	protected GameManager() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -52,7 +52,7 @@ public  class GameManager extends UnicastRemoteObject implements ManagerInterfac
 	}
 	
 	// Methodes : Parties
-	public void joinGame(String username, String gamename){
+	public static void joinGame(String username, String gamename){
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)){
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
@@ -77,7 +77,7 @@ public  class GameManager extends UnicastRemoteObject implements ManagerInterfac
 	public static void startGame(String gamename){
 		System.out.println("Lancement de la partie :"+gamename);
 		
-		// Selection aléatoire de l'utilisateur (index du tableau UserInGame)
+		// Selection alï¿½atoire de l'utilisateur (index du tableau UserInGame)
 		Game game = getItem(gamename);
 		int random = (int) (Math.random()*(game.getUsersInGame().size())+1);
 		game.setCurrentUser(random-1);
@@ -86,7 +86,7 @@ public  class GameManager extends UnicastRemoteObject implements ManagerInterfac
 		System.out.println("Au tour de :"+game.getUsersInGame().get(random-1));
 	}
 
-	public void nextPlayer(String gameName){
+	public static void  nextPlayer(String gameName){
 		Game game = getItem(gameName);
 		String pattern = game.getPattern();
 		String word;
@@ -99,7 +99,7 @@ public  class GameManager extends UnicastRemoteObject implements ManagerInterfac
 				word=(keyboard.nextLine());
 				// ajouter la gestion du temps
 		} while (!(game.testWord(word) && word.contains(pattern)));
-		System.out.println("bien joué, ce mot existe");
+		System.out.println("bien jouï¿½, ce mot existe");
 		// changement du joueur
 		if (game.getCurrentUser() >= game.getUsersInGame().size()-1){
 				game.setCurrentUser(0);
