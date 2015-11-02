@@ -18,11 +18,21 @@ import javax.swing.JTextField;
 import java.awt.Toolkit;
 
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.Icon;
 
 public class Jeu {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
 
 	/**
 	 * Launch the application.
@@ -55,7 +65,7 @@ public class Jeu {
 		Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int)tailleEcran.getHeight();
 		int largeur = (int)tailleEcran.getWidth();
-		frame.setBounds(100, 100, 1181, 1125);
+		frame.setBounds(100, 100, 1181, 1060);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -69,18 +79,13 @@ public class Jeu {
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
-		JButton button = new JButton("Envoyer du SEL");
-		button.setBounds(256, 473, 178, 29);
-		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		panel_1.add(button);
-		
 		textField = new JTextField();
-		textField.setBounds(795, 998, 267, 22);
+		textField.setBounds(796, 969, 267, 22);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(704, 43, 433, 942);
+		textPane.setBounds(704, 43, 433, 913);
 		panel_1.add(textPane);
 		
 		JButton btnQuitterLaPartie = new JButton("Quitter la partie");
@@ -140,52 +145,146 @@ public class Jeu {
 		panel_6.setLayout(new BorderLayout(0, 0));
 		panel_6.add(image6);
 		
-		JLabel image7 = new JLabel( new ImageIcon( "Anonyme.jpg"));
-		panel_7.setLayout(new BorderLayout(0, 0));
-		panel_7.add(image7);
-		
 		JLabel image8 = new JLabel( new ImageIcon( "Anonyme.jpg"));
 		panel_8.setLayout(new BorderLayout(0, 0));
 		panel_8.add(image8);
 		
 		JLabel image9 = new JLabel( new ImageIcon( "Anonyme.jpg"));
 		panel_9.setLayout(new BorderLayout(0, 0));
-		panel_9.add(image9);
+		panel_9.add(image9);		
+		
+		textField_1 = new JTextField("HerBenoit");
+		textField_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_1.setBorder(null);
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setEditable(false);
+		textField_1.setBounds(276, 171, 116, 22);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_2.setBorder(null);
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(104, 240, 116, 22);
+		panel_1.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_3.setBorder(null);
+		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_3.setEditable(false);
+		textField_3.setColumns(10);
+		textField_3.setBounds(59, 426, 116, 22);
+		panel_1.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_4.setBorder(null);
+		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(106, 607, 116, 22);
+		panel_1.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_5.setBorder(null);
+		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_5.setEditable(false);
+		textField_5.setColumns(10);
+		textField_5.setBounds(276, 684, 116, 22);
+		panel_1.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_6.setBorder(null);
+		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_6.setEditable(false);
+		textField_6.setColumns(10);
+		textField_6.setBounds(446, 607, 116, 22);
+		panel_1.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_7.setBorder(null);
+		textField_7.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_7.setEditable(false);
+		textField_7.setColumns(10);
+		textField_7.setBounds(495, 426, 116, 22);
+		panel_1.add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textField_8.setBorder(null);
+		textField_8.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_8.setEditable(false);
+		textField_8.setColumns(10);
+		textField_8.setBounds(446, 240, 116, 22);
+		panel_1.add(textField_8);
 		
 		JPanel panel_10 = new JPanel();
-		panel_10.setBounds(135, 366, 45, 45);
+		panel_10.setBounds(124, 353, 60, 60);
 		panel_1.add(panel_10);
 		
 		JPanel panel_11 = new JPanel();
-		panel_11.setBounds(313, 295, 45, 45);
+		panel_11.setBounds(310, 281, 60, 60);
 		panel_1.add(panel_11);
 		
 		JPanel panel_12 = new JPanel();
-		panel_12.setBounds(485, 366, 45, 45);
+		panel_12.setBounds(471, 353, 60, 60);
 		panel_1.add(panel_12);
 		
-		JPanel panel_13 = new JPanel();
-		panel_13.setBounds(96, 551, 45, 45);
-		panel_1.add(panel_13);
-		
 		JPanel panel_14 = new JPanel();
-		panel_14.setBounds(135, 732, 45, 45);
+		panel_14.setBounds(518, 536, 60, 60);
 		panel_1.add(panel_14);
 		
 		JPanel panel_15 = new JPanel();
-		panel_15.setBounds(313, 808, 45, 45);
+		panel_15.setBounds(471, 719, 60, 60);
 		panel_1.add(panel_15);
 		
 		JPanel panel_16 = new JPanel();
-		panel_16.setBounds(485, 732, 45, 45);
+		panel_16.setBounds(310, 796, 60, 60);
 		panel_1.add(panel_16);
 		
 		JPanel panel_17 = new JPanel();
-		panel_17.setBounds(532, 551, 45, 45);
+		panel_17.setBounds(135, 719, 60, 60);
 		panel_1.add(panel_17);
 		
-		JLabel image10 = new JLabel( new ImageIcon( "Bombe.jpg"));
-		panel_10.setLayout(new BorderLayout(0, 0));
-		panel_10.add(image10);
+		JPanel panel_13 = new JPanel();
+		panel_13.setBounds(82, 536, 60, 60);
+		panel_1.add(panel_13);
+		
+		JLabel image12 = new JLabel( new ImageIcon( "Bombe.jpg"));
+		panel_12.setLayout(new BorderLayout(0, 0));
+		panel_12.add(image12);
+		
+		JPanel panel_18 = new JPanel();
+		panel_18.setBounds(207, 371, 250, 250);
+		panel_18.setVisible(false);
+		panel_1.add(panel_18);
+		
+		JLabel image18 = new JLabel( new ImageIcon( "Sel1.jpg"));
+		panel_18.setLayout(new BorderLayout(0, 0));
+		panel_18.add(image18);
+		
+		JButton button = new JButton("Envoyer du SEL");
+		button.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    	if (panel_18.isVisible() == true) {
+		    		panel_18.setVisible(false);
+		    	}
+		    	else panel_18.setVisible(true);
+		    	}
+		   
+		});
+		button.setBounds(254, 901, 178, 29);
+		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.add(button);
+		
 	}
 }
