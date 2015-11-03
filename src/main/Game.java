@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Game {
 	// Attributs
 	private ArrayList<String> usersInGame = new ArrayList<String>();
-	protected Dictionnary dico;
+	private Dictionnary dico;
 	private String name;
 	private int currentUser;
 	
@@ -44,6 +44,10 @@ public class Game {
 	}
 	public String getPattern() {
 		return dico.genPattern();
+	}
+	public boolean newPattern(){
+		dico.genPattern();
+		return true;
 	}
 	
 	// Methodes : ToString()

@@ -13,19 +13,19 @@ public class GameManager implements ManagerInterface {
 		return games;
 	}
 
-	public static void addItem(String gameName,String dicoName){
-		games.add(new Game(gameName,dicoName));
+	public static void addItem(String gamename,String dicoName){
+		games.add(new Game(gamename,dicoName));
 	}
 	
-	public static void delItem(String gameName){
-		games.remove(getItem(gameName));
+	public static void delItem(String gamename){
+		games.remove(getItem(gamename));
 	}
 	
-	public static boolean itemExist(String gameName){
+	public static boolean itemExist(String gamename){
 		String itemName;
 		for (Game item : games) {
 			itemName = item.getName();
-			if (itemName.compareTo(gameName) == 0){
+			if (itemName.compareTo(gamename) == 0){
 				//System.out.println("Cette partie existe :"+itemName);
 				return true;
 			}
@@ -70,7 +70,7 @@ public class GameManager implements ManagerInterface {
 	public static void startGame(String gamename){
 		System.out.println("Lancement de la partie :"+gamename);
 		
-		// Selection aléatoire de l'utilisateur (index du tableau UserInGame)
+		// Selection aléatoire du premier joueur (index du tableau UserInGame)
 		Game game = getItem(gamename);
 		int random = (int) (Math.random()*(game.getUsersInGame().size())+1);
 		game.setCurrentUser(random-1);
@@ -79,8 +79,8 @@ public class GameManager implements ManagerInterface {
 		System.out.println("Au tour de :"+game.getUsersInGame().get(random-1));
 	}
 
-	public static void nextPlayer(String gameName){
-		Game game = getItem(gameName);
+	public static void nextPlayer(String gamename){
+		Game game = getItem(gamename);
 		String pattern = game.getPattern();
 		String word;
 		Scanner keyboard = new Scanner(System.in);
@@ -91,7 +91,7 @@ public class GameManager implements ManagerInterface {
 				System.out.println("Entre un mot");
 				word=(keyboard.nextLine());
 				// ajouter la gestion du temps
-		} while (!(game.testWord(word) && word.contains(pattern)));
+		} while (!(game.testWord(word)));
 		System.out.println("bien joué, ce mot existe");
 		// changement du joueur
 		if (game.getCurrentUser() >= game.getUsersInGame().size()-1){
