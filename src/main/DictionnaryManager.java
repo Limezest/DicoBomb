@@ -36,6 +36,7 @@ public class DictionnaryManager {
 		System.out.println(monDico);
 		
 		System.out.println(monDico.wordExiste("mouillera"));
+		System.out.println(monDico.genPattern());
 	}
 	
 	

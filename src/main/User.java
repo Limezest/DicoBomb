@@ -1,17 +1,17 @@
 package main;
 
-public class User {
-	//Attributs
+public class User implements java.io.Serializable {
+	// Attributs
 	private String name;
 	private String game;
-
-	//Contructeur
+	private static final long serialVersionUID = 1L;
+	// Contructeur
 	public User(String name) {
 		super();
 		this.name = name;
 	}
 
-	//Methodes : getters et setters
+	// Methodes : getters et setters
 	public String getName() {
 		return name;
 	}
@@ -25,7 +25,7 @@ public class User {
 	}
 
 	
-	//Methodes : ToString()
+	// Methodes : ToString()
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", game=" + game + "]";
