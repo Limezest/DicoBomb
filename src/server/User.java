@@ -1,22 +1,13 @@
-package main;
+package server;
 
-<<<<<<< HEAD
-public class User {
+public class User implements java.io.Serializable {
 	// Attributs
 	private String username;
 	private String gamename;
+	private static final long serialVersionUID = 1L;
 
 	// Contructeur
 	public User(String username) {
-=======
-public class User implements java.io.Serializable {
-	// Attributs
-	private String name;
-	private String game;
-	private static final long serialVersionUID = 1L;
-	// Contructeur
-	public User(String name) {
->>>>>>> lens_jeu
 		super();
 		this.username = username;
 	}
@@ -30,11 +21,10 @@ public class User implements java.io.Serializable {
 		return gamename;
 	}
 
-	public void setGame(String gamename){
-		this.gamename=gamename;
+	public void setGame(String gamename) {
+		this.gamename = gamename;
 	}
 
-	
 	// Methodes : ToString()
 	@Override
 	public String toString() {

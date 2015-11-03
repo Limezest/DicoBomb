@@ -12,9 +12,11 @@ public class Server {
 	public static void addClient(Socket client) {
 		clients.add(client);
 	}
+
 	public static void delClient(Socket client) {
 		clients.remove(client);
 	}
+
 	public static ArrayList<Socket> getItems() {
 		return clients;
 	}

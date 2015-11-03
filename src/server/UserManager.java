@@ -1,6 +1,6 @@
-package main;
-import java.util.ArrayList;
+package server;
 
+import java.util.ArrayList;
 
 public class UserManager {
 	// Attributs
@@ -11,34 +11,32 @@ public class UserManager {
 		return users;
 	}
 
-	public static void addItem(String username){
+	public static void addItem(String username) {
 		users.add(new User(username));
-		//System.out.println("Ajout de :"+username);
-		//System.out.println("Ajout de :"+name);
+		// System.out.println("Ajout de :"+username);
+		// System.out.println("Ajout de :"+name);
 	}
-	
-	public static void delItem(String username){
+
+	public static void delItem(String username) {
 		users.remove(getItem(username));
 	}
-	
-	public static boolean itemExist(String username){
-		String itemName;
+
+	public static boolean itemExist(String username) {
 		String itemName;
 		for (User item : users) {
 			itemName = item.getName();
-			if (itemName.compareTo(username) == 0){
+			if (itemName.compareTo(username) == 0) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public  static User getItem(String username){
-		String itemName;
+
+	public static User getItem(String username) {
 		String itemName;
 		for (User item : users) {
 			itemName = item.getName();
-			if (itemName.compareTo(username) == 0 ){
+			if (itemName.compareTo(username) == 0) {
 				return item;
 			}
 		}

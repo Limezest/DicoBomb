@@ -7,11 +7,10 @@ import java.net.Socket;
 public class Send {
 
 	private PrintWriter out;
-	
-	public Send(Socket socket,String message) throws IOException {
+
+	public Send(Socket socket, String message) throws IOException {
 		this.out = new PrintWriter(socket.getOutputStream());
 		out.println(message);
-	    out.flush();
+		out.flush();
 	}
 }
-

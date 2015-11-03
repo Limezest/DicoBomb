@@ -12,7 +12,6 @@ public class Connexion implements Runnable {
 	private PrintWriter out = null;
 	private BufferedReader in = null;
 	private Scanner sc = null;
-	private boolean connect = false;
 
 	public Connexion(Socket s) {
 

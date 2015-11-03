@@ -1,12 +1,10 @@
-package main;
+package client;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
-public class ClientCmndLine {
+public class ClientRMIClient {
 	private ClientMessageHandler clientManager;
 	private String pseudo;
 	private ArrayList<User> users;
