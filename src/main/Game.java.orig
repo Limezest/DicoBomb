@@ -2,10 +2,17 @@ package main;
 
 import java.util.ArrayList;
 
-public class Game  implements java.io.Serializable {
+<<<<<<< HEAD
+public class Game {
 	// Attributs
 	private ArrayList<String> usersInGame = new ArrayList<String>();
 	private Dictionnary dico;
+=======
+public class Game  implements java.io.Serializable {
+	// Attributs
+	private ArrayList<String> usersInGame = new ArrayList<String>();
+	protected Dictionnary dico;
+>>>>>>> lens_jeu
 	private String name;
 	private int currentUser;
 	
@@ -13,7 +20,11 @@ public class Game  implements java.io.Serializable {
 	public Game(String gamename,String dicoName) {
 		super();
 		this.name = gamename;
+<<<<<<< HEAD
 		this.dico = new Dictionnary("dico1","/Users/benoitmenard/Documents/genie_logiciel/git/src/main");
+=======
+		this.dico = new Dictionnary("dico1","dictionnaire");
+>>>>>>> lens_jeu
 	}
 	
 	// Methodes : getters et setters
@@ -36,6 +47,7 @@ public class Game  implements java.io.Serializable {
 	}
 	public void delUserToGame(String username) {
 		usersInGame.remove(username);
+<<<<<<< HEAD
 	}
 	
 	// Methodes : Dico
@@ -50,9 +62,25 @@ public class Game  implements java.io.Serializable {
 		return true;
 	}
 	
+=======
+	}
+	
+	// Methodes : Dico
+	public boolean testWord(String word) {
+		return dico.wordExiste(word);
+	}
+	public String getPattern() {
+		return dico.genPattern();
+	}
+	
+>>>>>>> lens_jeu
 	// Methodes : ToString()
 	@Override
 	public String toString() {
 		return "Game [users=" + usersInGame + ", name=" + name + "]";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> lens_jeu

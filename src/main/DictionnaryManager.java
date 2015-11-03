@@ -29,10 +29,17 @@ public class DictionnaryManager {
 	}
 
 	public static void main(String[] args) {
-		//Dictionnary monDico = new Dictionnary("dictionnaire FranÃ§ais","dictionnaire");
+		//Dictionnary monDico = new Dictionnary("dictionnaire Français","dictionnaire");
 		//System.out.println(monDico);
 		
 		//System.out.println(monDico.wordExiste("mouillera"));
 		//System.out.println(monDico.genPattern());
 	}
 }
+<<<<<<< .mine=======		System.out.println(monDico.genPattern());
+	}
+	
+	
+
+}
+>>>>>>> .theirs

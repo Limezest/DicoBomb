@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dictionnary {
+public class Dictionnary implements java.io.Serializable {
+	private static final long serialVersionUID = 2940976109874271907L;
 	private String name;
 	private String path;
 	private String osType_slash ;
@@ -38,11 +39,11 @@ public class Dictionnary {
 					return true;
 				}
 			}
-		}		
+		}
 		catch (Exception e){
 			System.out.println(e.toString());
 			return false;
-		}	
+		}
 	}
 	public String genPattern(){
 		int randomNum = 0 + (int)(Math.random()*25); //génération du nombre aleatoire correspondant au nom du dico
@@ -96,3 +97,15 @@ public class Dictionnary {
 	}
 
 }
+<<<<<<< .mine=======		int randomNum = 0 + (int)(Math.random()*(word.length()-4));
+		pattern = word.substring(randomNum, randomNum + nb_char_pattern);
+		return pattern;
+	}
+	public static void main(String[] args) {
+		
+		Dictionnary monDico = new Dictionnary("dictionnaireFran�ais","dictionnaire");
+		System.out.println(monDico);
+	}
+
+}
+>>>>>>> .theirs

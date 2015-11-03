@@ -5,7 +5,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
+<<<<<<< HEAD
 import java.math.*;
+
+public class GameManager implements ManagerInterface {
+=======
 
 public  class GameManager   {
 	protected GameManager() throws RemoteException {
@@ -13,6 +17,7 @@ public  class GameManager   {
 		// TODO Auto-generated constructor stub
 	}
 
+>>>>>>> lens_jeu
 	// Attributs
 	private static ArrayList<Game> games = new ArrayList<Game>();
 
@@ -21,20 +26,32 @@ public  class GameManager   {
 		return games;
 	}
 
+<<<<<<< HEAD
 	public static void addItem(String gamename,String dicoName){
 		games.add(new Game(gamename,dicoName));
+=======
+	public static void addItem(String gameName,String dicoName){
+		games.add(new Game(gameName,dicoName));
+>>>>>>> lens_jeu
 	}
 	
 	public static void delItem(String gamename){
 		games.remove(getItem(gamename));
 	}
 	
+<<<<<<< HEAD
 	public static boolean itemExist(String gamename){
-		String itemName;
 		String itemName;
 		for (Game item : games) {
 			itemName = item.getName();
 			if (itemName.compareTo(gamename) == 0){
+=======
+	public static boolean itemExist(String gameName){
+		String itemName;
+		for (Game item : games) {
+			itemName = item.getName();
+			if (itemName.compareTo(gameName) == 0){
+>>>>>>> lens_jeu
 				//System.out.println("Cette partie existe :"+itemName);
 				return true;
 			}
@@ -79,7 +96,11 @@ public  class GameManager   {
 	public static void startGame(String gamename){
 		System.out.println("Lancement de la partie :"+gamename);
 		
+<<<<<<< HEAD
 		// Selection aléatoire du premier joueur (index du tableau UserInGame)
+=======
+		// Selection al�atoire de l'utilisateur (index du tableau UserInGame)
+>>>>>>> lens_jeu
 		Game game = getItem(gamename);
 		int random = (int) (Math.random()*(game.getUsersInGame().size())+1);
 		game.setCurrentUser(random-1);
@@ -88,25 +109,43 @@ public  class GameManager   {
 		System.out.println("Au tour de :"+game.getUsersInGame().get(random-1));
 	}
 
+<<<<<<< HEAD
 	public static void nextPlayer(String gamename){
 		Game game = getItem(gamename);
+=======
+	public static void  nextPlayer(String gameName){
+		Game game = getItem(gameName);
+>>>>>>> lens_jeu
 		String pattern = game.getPattern();
 		String word;
 		Scanner keyboard = new Scanner(System.in);
 		String currentUser = game.getUsersInGame().get(game.getCurrentUser());
 		System.out.println("C'est au tour de :"+currentUser);
+<<<<<<< HEAD
 		System.out.println("Voici un patter :"+pattern);
+=======
+		System.out.println("Voici un pattern :"+pattern);
+>>>>>>> lens_jeu
 		do {
 				System.out.println("Entre un mot");
 				word=(keyboard.nextLine());
 				// ajouter la gestion du temps
+<<<<<<< HEAD
 		} while (!(game.testWord(word)));
 		System.out.println("bien joué, ce mot existe");
+=======
+		} while (!(game.testWord(word) && word.contains(pattern)));
+		System.out.println("bien jou�, ce mot existe");
+>>>>>>> lens_jeu
 		// changement du joueur
 		if (game.getCurrentUser() >= game.getUsersInGame().size()-1){
 				game.setCurrentUser(0);
 		}else {
 			game.setCurrentUser(game.getCurrentUser()+1);
 		}
+<<<<<<< HEAD
+=======
+		keyboard.close();
+>>>>>>> lens_jeu
 	}
 }
