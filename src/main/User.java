@@ -2,32 +2,32 @@ package main;
 
 public class User implements java.io.Serializable {
 	// Attributs
-	private String name;
-	private String game;
+	private String username;
+	private String gamename;
 	private static final long serialVersionUID = 1L;
+
 	// Contructeur
-	public User(String name) {
+	public User(String username) {
 		super();
-		this.name = name;
+		this.username = username;
 	}
 
 	// Methodes : getters et setters
 	public String getName() {
-		return name;
+		return username;
 	}
 
 	public String getGame() {
-		return game;
+		return gamename;
 	}
 
-	public void setGame(String game){
-		this.game=game;
+	public void setGame(String gamename) {
+		this.gamename = gamename;
 	}
 
-	
 	// Methodes : ToString()
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", game=" + game + "]";
+		return "User [name=" + username + ", game=" + gamename + "]";
 	}
 }

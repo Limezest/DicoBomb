@@ -4,10 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class MessageHandler extends UnicastRemoteObject implements MessageHandlerInterface {
+import main.Game;
+import main.GameManager;
+import main.User;
+import main.UserManager;
+
+public class ServerRMI extends UnicastRemoteObject implements ServerRMInterface {
 	private static final long serialVersionUID = 1L;
 
-	protected MessageHandler() throws RemoteException {
+	protected ServerRMI() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
