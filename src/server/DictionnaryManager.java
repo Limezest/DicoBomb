@@ -3,10 +3,10 @@ package server;
 import java.util.List;
 
 public class DictionnaryManager {
-	private List<Dictionnary> dictionnaries;
+	private static List<Dictionnary> dictionnaries;
 
 	public DictionnaryManager(List<Dictionnary> dictionnaires) {
-		this.dictionnaries = dictionnaires;
+		//dictionnaries = dictionnaires;
 	}
 
 	@Override
@@ -14,19 +14,38 @@ public class DictionnaryManager {
 		return "DictionnaryManager [dictionnaires=" + dictionnaries + "]";
 	}
 
-	public boolean addDictionnary(Dictionnary dico) {
-		this.dictionnaries.add(dico);
-		if (this.dictionnaries.contains(dico)) {
-			return true;
+	public static boolean addItem(Dictionnary dico) {
+		dictionnaries.add(dico);
+		return dictionnaries.contains(dico);
+	}
+
+	public static boolean delItem(Dictionnary dico) {
+		dictionnaries.remove(dico);
+		return (!dictionnaries.contains(dico));
+	}
+	public static boolean itemExist(String diconame) {
+//		String itemName;
+//		for (User item : users) {
+//			itemName = item.getName();
+//			if (itemName.compareTo(username) == 0) {
+//				return true;
+//			}
+//		}
+		return dictionnaries.contains(getItem(diconame));
+	}
+
+	public static Dictionnary getItem(String diconame) {
+		String itemName;
+		for (Dictionnary item : dictionnaries) {
+			itemName = item.getName();
+			if (itemName.compareTo(diconame) == 0) {
+				return item;
+			}
 		}
-		return false;
+		return null;
 	}
 
-	public boolean deleteDictionnary(Dictionnary dico) {
-		this.dictionnaries.remove(dico);
-		return (!this.dictionnaries.contains(dico));
-	}
-
+	
 	public static void main(String[] args) {
 		// Dictionnary monDico = new Dictionnary("dictionnaire
 		// Français","dictionnaire");
