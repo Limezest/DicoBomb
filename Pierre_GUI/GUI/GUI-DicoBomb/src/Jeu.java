@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 
@@ -16,10 +17,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.Icon;
+import java.awt.Color;
 
 public class Jeu {
 
@@ -33,6 +38,8 @@ public class Jeu {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	private JTextField lettres;
+	private JTextField textField_9;
 
 	/**
 	 * Launch the application.
@@ -43,6 +50,7 @@ public class Jeu {
 				try {
 					Jeu window = new Jeu();
 					window.frame.setVisible(true);
+					window.frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -80,11 +88,12 @@ public class Jeu {
 		panel_1.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(796, 969, 267, 22);
+		textField.setBounds(704, 956, 433, 46);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setBackground(new Color(248, 248, 255));
 		textPane.setBounds(704, 43, 433, 913);
 		panel_1.add(textPane);
 		
@@ -266,7 +275,10 @@ public class Jeu {
 		panel_18.setVisible(false);
 		panel_1.add(panel_18);
 		
-		JLabel image18 = new JLabel( new ImageIcon( "Sel1.jpg"));
+		Random rand = new Random();
+		String numPhoto =Integer.toString((int) (rand.nextInt(3-1+1)+1));
+		
+		JLabel image18 = new JLabel( new ImageIcon( "sel".concat(numPhoto).concat(".jpg")));
 		panel_18.setLayout(new BorderLayout(0, 0));
 		panel_18.add(image18);
 		
@@ -275,16 +287,33 @@ public class Jeu {
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		    	if (panel_18.isVisible() == true) {
-		    		panel_18.setVisible(false);
-		    	}
-		    	else panel_18.setVisible(true);
-		    	}
-		   
+		    	try {
+		    		String numPhoto =Integer.toString((int) (rand.nextInt(5-1+1)+1));
+					image18.setIcon( new ImageIcon(ImageIO.read( new File("sel".concat(numPhoto).concat(".jpg")) ) ) );
+					panel_18.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+		    }		   
 		});
-		button.setBounds(254, 901, 178, 29);
+		button.setBounds(256, 947, 178, 29);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(button);
+		
+		lettres = new JTextField("RPE");
+		lettres.setHorizontalAlignment(SwingConstants.CENTER);
+		lettres.setFont(new Font("Tahoma", Font.BOLD, 65));
+		lettres.setEditable(false);
+		lettres.setColumns(10);
+		lettres.setBorder(null);
+		lettres.setBounds(145, 63, 374, 67);
+		panel_1.add(lettres);
+		
+		textField_9 = new JTextField();
+		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		textField_9.setColumns(10);
+		textField_9.setBounds(129, 888, 433, 46);
+		panel_1.add(textField_9);
 		
 	}
 }

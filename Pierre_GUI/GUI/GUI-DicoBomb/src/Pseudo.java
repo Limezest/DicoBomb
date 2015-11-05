@@ -1,5 +1,3 @@
-package org.eclipse.wb.swing;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

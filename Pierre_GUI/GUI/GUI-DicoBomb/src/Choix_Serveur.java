@@ -1,5 +1,8 @@
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JButton;
@@ -8,6 +11,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.EventListener;
 
 
@@ -44,13 +51,14 @@ public class Choix_Serveur {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		DefaultListModel model = new DefaultListModel();
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 798, 682);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		String[] data = { "A", "B", "C", "D", "E", "F", "G", "H" };
-		JList<String> list = new JList<String>(data);
+		JList<String> list = new JList(model);
 		list.setBounds(39, 45, 252, 579);
 		frame.getContentPane().add(list);
 		
@@ -67,8 +75,26 @@ public class Choix_Serveur {
 		textField_1.setColumns(10);
 		
 		JButton btnNouveauServeur = new JButton("Nouveau serveur");
-		btnNouveauServeur.setBounds(83, 13, 146, 25);
+		btnNouveauServeur.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+		    }		   
+		});
+		btnNouveauServeur.setBounds(37, 13, 146, 25);
 		frame.getContentPane().add(btnNouveauServeur);
+		
+		JButton btnActualiser = new JButton("Actualiser");
+		btnActualiser.addActionListener( new ActionListener()
+		{
+		    public void actionPerformed(ActionEvent e)
+		    {
+				model.addElement("B");
+				JList<String> list = new JList(model);
+		    }		   
+		});
+		btnActualiser.setBounds(194, 13, 97, 25);
+		frame.getContentPane().add(btnActualiser);
 		
 		ListSelectionListener listSelectionListener = new ListSelectionListener() {
 		      public void valueChanged(ListSelectionEvent listSelectionEvent) {
