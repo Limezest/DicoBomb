@@ -51,7 +51,7 @@ public class Choix_Serveur {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		DefaultListModel model = new DefaultListModel();
+		final DefaultListModel model = new DefaultListModel();
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 798, 682);

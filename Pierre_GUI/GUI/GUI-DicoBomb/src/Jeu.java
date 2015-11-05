@@ -6,24 +6,26 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
-import javax.swing.Icon;
+
 import java.awt.Color;
 
 public class Jeu {
@@ -74,7 +76,7 @@ public class Jeu {
 		Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int)tailleEcran.getHeight();
 		int largeur = (int)tailleEcran.getWidth();
-		frmDicobomb.setBounds(951, -45, 1222, 904);
+		frmDicobomb.setBounds(950, -45, 1220, 900);
 		frmDicobomb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDicobomb.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -94,12 +96,27 @@ public class Jeu {
 		textField.setColumns(10);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBackground(Color.CYAN);
+		textPane.setBackground(Color.LIGHT_GRAY);
 		textPane.setBounds(745, 43, 433, 733);
+		textPane.setEditable(false);
 		panel_1.add(textPane);
 		
-		JButton btnQuitterLaPartie = new JButton("Quitter la partie");
+		final JButton btnQuitterLaPartie = new JButton("Quitter la partie");
 		btnQuitterLaPartie.setBounds(1035, 13, 143, 25);
+		btnQuitterLaPartie.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane popup = new JOptionPane();
+				int retour = popup.showConfirmDialog(btnQuitterLaPartie, "Êtes-vous sûr(e) ?",
+														"Quitter la partie", JOptionPane.OK_CANCEL_OPTION);
+				
+				if (retour == JOptionPane.OK_OPTION) {
+					// TODO: Appeler la fonction pour quitter la partie
+					System.out.println("Quitter la partie");
+				}
+				
+			}
+		});
 		panel_1.add(btnQuitterLaPartie);
 		
 		JPanel panel_2 = new JPanel();
@@ -277,15 +294,15 @@ public class Jeu {
 		panel_12.setLayout(new BorderLayout(0, 0));
 		panel_12.add(image12);
 		
-		JPanel panel_18 = new JPanel();
+		final JPanel panel_18 = new JPanel();
 		panel_18.setBounds(207, 371, 250, 250);
 		panel_18.setVisible(false);
 		panel_1.add(panel_18);
 		
-		Random rand = new Random();
+		final Random rand = new Random();
 		String numPhoto =Integer.toString((int) (rand.nextInt(3-1+1)+1));
 		
-		JLabel image18 = new JLabel( new ImageIcon( "sel".concat(numPhoto).concat(".jpg")));
+		final JLabel image18 = new JLabel( new ImageIcon( "sel".concat(numPhoto).concat(".jpg")));
 		panel_18.setLayout(new BorderLayout(0, 0));
 		panel_18.add(image18);
 		
@@ -320,6 +337,24 @@ public class Jeu {
 		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		textField_9.setColumns(10);
 		textField_9.setBounds(118, 90, 433, 46);
+		textField_9.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					JOptionPane.showMessageDialog(null , "Mot : " + textField_9.getText());
+					// TODO: Appeler la fonction de vérification
+				}
+			}
+		});
 		panel_1.add(textField_9);
 		
 	}
