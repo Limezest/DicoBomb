@@ -28,7 +28,7 @@ import java.awt.Color;
 
 public class Jeu {
 
-	private JFrame frame;
+	private JFrame frmDicobomb;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField txtInvit_2;
@@ -49,8 +49,8 @@ public class Jeu {
 			public void run() {
 				try {
 					Jeu window = new Jeu();
-					window.frame.setVisible(true);
-					window.frame.setLocationRelativeTo(null);
+					window.frmDicobomb.setVisible(true);
+					window.frmDicobomb.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,36 +69,37 @@ public class Jeu {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frmDicobomb = new JFrame();
+		frmDicobomb.setTitle("DicoBomb");
 		Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int)tailleEcran.getHeight();
 		int largeur = (int)tailleEcran.getWidth();
-		frame.setBounds(951, -45, 1349, 904);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmDicobomb.setBounds(951, -45, 1222, 904);
+		frmDicobomb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmDicobomb.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.EAST);
+		frmDicobomb.getContentPane().add(panel, BorderLayout.EAST);
 		
 		JTextArea textArea = new JTextArea();
 		panel.add(textArea);
 		
 		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+		frmDicobomb.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(872, 777, 433, 46);
+		textField.setBounds(745, 777, 433, 46);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBackground(new Color(248, 248, 255));
-		textPane.setBounds(872, 43, 433, 733);
+		textPane.setBackground(Color.CYAN);
+		textPane.setBounds(745, 43, 433, 733);
 		panel_1.add(textPane);
 		
 		JButton btnQuitterLaPartie = new JButton("Quitter la partie");
-		btnQuitterLaPartie.setBounds(1162, 13, 143, 25);
+		btnQuitterLaPartie.setBounds(1035, 13, 143, 25);
 		panel_1.add(btnQuitterLaPartie);
 		
 		JPanel panel_2 = new JPanel();
@@ -318,7 +319,7 @@ public class Jeu {
 		textField_9 = new JTextField();
 		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		textField_9.setColumns(10);
-		textField_9.setBounds(124, 91, 433, 46);
+		textField_9.setBounds(118, 90, 433, 46);
 		panel_1.add(textField_9);
 		
 	}
