@@ -1,4 +1,4 @@
-package server;
+package main;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class DictionnaryManager {
 	
 	public static void main(String[] args) {
 		// Dictionnary monDico = new Dictionnary("dictionnaire
-		// Français","dictionnaire");
+		// Franï¿½ais","dictionnaire");
 		// System.out.println(monDico);
 		// System.out.println(monDico.wordExiste("mouillera"));
 		// System.out.println(monDico.genPattern());

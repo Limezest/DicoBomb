@@ -1,4 +1,4 @@
-package server;
+package main;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class GameManager {
 		}
 	}
 
-	public static void startGame(String gamename) {
+	public static String startGame(String gamename) {
 		System.out.println("Lancement de la partie :" + gamename);
 
 		// Selection aléatoire du premier joueur (index du tableau UserInGame)
@@ -88,28 +88,24 @@ public class GameManager {
 
 		// Remplacer les system.out.println par une fonction qui envoie aux
 		// client
-		System.out.println("Au tour de :" + game.getUsersInGame().get(random - 1));
-	}
-
-	public static void nextPlayer(String gamename) {
+		return game.getUsersInGame().get(game.getCurrentUser());
+	}	
+	
+	public static String nextPlayer(String gamename,String word) {
 		Game game = getItem(gamename);
-		String pattern = game.getPattern();
-		//String word;
-		//Scanner keyboard = new Scanner(System.in);
-		String currentUser = game.getUsersInGame().get(game.getCurrentUser());
-		System.out.println("C'est au tour de :" + currentUser);
-		System.out.println("Voici un patter :" + pattern);
-		//do {
-			//System.out.println("Entre un mot");
-			//word = (keyboard.nextLine());
-			// ajouter la gestion du temps
-		//} while (!(game.testWord(word)));
-		System.out.println("bien joué, ce mot existe");
-		// changement du joueur
-		if (game.getCurrentUser() >= game.getUsersInGame().size() - 1) {
-			game.setCurrentUser(0);
-		} else {
-			game.setCurrentUser(game.getCurrentUser() + 1);
+		
+		if (game.testWord(word)){
+			//si mot existe - changement de joueur
+			if (game.getCurrentUser() >= game.getUsersInGame().size() - 1) {
+				game.setCurrentUser(0);
+			} else {
+				game.setCurrentUser(game.getCurrentUser() + 1);
+			}
+			return (game.getUsersInGame().get(game.getCurrentUser())+","+game.getPattern());
+		}
+		else {
+			//sinon on continue sur le meme
+			return "false";
 		}
 	}
 }

@@ -8,7 +8,7 @@ public class Server {
 	public static void main(String[] args) {
 
 		SecurityManager security = System.getSecurityManager();
-		System.setProperty("java.rmi.server.hostname", "127.0.0.1");
+		System.setProperty("java.rmi.server.hostname", "192.168.1.1");
 
 		if (security != null) {
 			System.setSecurityManager(new java.lang.SecurityManager());

@@ -17,8 +17,8 @@ public class ServerRMI extends UnicastRemoteObject implements ServerRMInterface 
 		// TODO Auto-generated constructor stub
 	}
 
-	public void newUser(String username) throws RemoteException {
-		UserManager.addItem(username);
+	public void newUser(String username,String ip) throws RemoteException {
+		UserManager.addItem(username,ip);
 	}
 
 	public void newGame(String gamename, String dico) throws RemoteException {
@@ -45,8 +45,8 @@ public class ServerRMI extends UnicastRemoteObject implements ServerRMInterface 
 		UserManager.delItem(username);
 	}
 
-	public void nextPlayer(String username) throws RemoteException {
-		GameManager.nextPlayer(username);
+	public void nextPlayer(String gamename,String word) throws RemoteException {
+		GameManager.nextPlayer(gamename,word);
 	}
 
 	public void startGame(String gamename) throws RemoteException {

@@ -1,4 +1,4 @@
-package server;
+package main;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,9 @@ public class UserManager {
 		return users;
 	}
 
-	public static boolean addItem(String username) {
+	public static boolean addItem(String username,String ip) {
 		if(!(users.contains(getItem(username)))){
-			users.add(new User(username));
+			users.add(new User(username,ip));
 		}
 		return users.contains(getItem(username));
 	}

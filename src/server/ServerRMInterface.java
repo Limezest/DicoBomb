@@ -18,11 +18,11 @@ public interface ServerRMInterface extends Remote {
 
 	public void userQuitGame(String username, String gamename) throws RemoteException;
 
-	public void newUser(String username) throws RemoteException;
+	public void newUser(String username, String ip) throws RemoteException;
 
 	public void newGame(String gamename, String dico) throws RemoteException;
 
-	public void nextPlayer(String username) throws RemoteException;
+	public void nextPlayer(String gamename,String word) throws RemoteException;
 
 	public void startGame(String gamename) throws RemoteException;
 }
