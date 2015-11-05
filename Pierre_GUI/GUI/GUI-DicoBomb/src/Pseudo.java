@@ -66,6 +66,7 @@ public class Pseudo {
 		textField.setColumns(10);
 		
 		txtChoisissezUnPseudo = new JTextField();
+		txtChoisissezUnPseudo.setBorder(null);
 		txtChoisissezUnPseudo.setForeground(Color.BLACK);
 		txtChoisissezUnPseudo.setBackground(Color.LIGHT_GRAY);
 		txtChoisissezUnPseudo.setEditable(false);
@@ -76,6 +77,7 @@ public class Pseudo {
 		txtChoisissezUnPseudo.setColumns(10);
 		
 		txtEntrezLadresseDu = new JTextField();
+		txtEntrezLadresseDu.setBorder(null);
 		txtEntrezLadresseDu.setText("Entrez l'adresse du serveur :");
 		txtEntrezLadresseDu.setForeground(Color.BLACK);
 		txtEntrezLadresseDu.setFont(new Font("Tahoma", Font.PLAIN, 16));

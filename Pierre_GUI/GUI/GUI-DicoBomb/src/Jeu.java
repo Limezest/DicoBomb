@@ -31,13 +31,13 @@ public class Jeu {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtInvit_2;
+	private JTextField txtInvit_1;
 	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField txtInvit;
+	private JTextField txtVempierre;
+	private JTextField txtLensrocket;
+	private JTextField txtNomercyril;
 	private JTextField lettres;
 	private JTextField textField_9;
 
@@ -73,7 +73,7 @@ public class Jeu {
 		Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int)tailleEcran.getHeight();
 		int largeur = (int)tailleEcran.getWidth();
-		frame.setBounds(100, 100, 1181, 1060);
+		frame.setBounds(951, -45, 1349, 904);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -88,17 +88,17 @@ public class Jeu {
 		panel_1.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(704, 956, 433, 46);
+		textField.setBounds(872, 777, 433, 46);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setBackground(new Color(248, 248, 255));
-		textPane.setBounds(704, 43, 433, 913);
+		textPane.setBounds(872, 43, 433, 733);
 		panel_1.add(textPane);
 		
 		JButton btnQuitterLaPartie = new JButton("Quitter la partie");
-		btnQuitterLaPartie.setBounds(994, 13, 143, 25);
+		btnQuitterLaPartie.setBounds(1162, 13, 143, 25);
 		panel_1.add(btnQuitterLaPartie);
 		
 		JPanel panel_2 = new JPanel();
@@ -171,23 +171,25 @@ public class Jeu {
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField_2.setBorder(null);
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(104, 240, 116, 22);
-		panel_1.add(textField_2);
+		txtInvit_2 = new JTextField();
+		txtInvit_2.setText("Invit\u00E989");
+		txtInvit_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtInvit_2.setBorder(null);
+		txtInvit_2.setHorizontalAlignment(SwingConstants.CENTER);
+		txtInvit_2.setEditable(false);
+		txtInvit_2.setColumns(10);
+		txtInvit_2.setBounds(104, 240, 116, 22);
+		panel_1.add(txtInvit_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField_3.setBorder(null);
-		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(59, 426, 116, 22);
-		panel_1.add(textField_3);
+		txtInvit_1 = new JTextField();
+		txtInvit_1.setText("Invit\u00E948");
+		txtInvit_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtInvit_1.setBorder(null);
+		txtInvit_1.setHorizontalAlignment(SwingConstants.CENTER);
+		txtInvit_1.setEditable(false);
+		txtInvit_1.setColumns(10);
+		txtInvit_1.setBounds(59, 426, 116, 22);
+		panel_1.add(txtInvit_1);
 		
 		textField_4 = new JTextField();
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -195,44 +197,48 @@ public class Jeu {
 		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_4.setEditable(false);
 		textField_4.setColumns(10);
-		textField_4.setBounds(106, 607, 116, 22);
+		textField_4.setBounds(92, 607, 116, 22);
 		panel_1.add(textField_4);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField_5.setBorder(null);
-		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBounds(276, 684, 116, 22);
-		panel_1.add(textField_5);
+		txtInvit = new JTextField();
+		txtInvit.setText("Invit\u00E9158");
+		txtInvit.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtInvit.setBorder(null);
+		txtInvit.setHorizontalAlignment(SwingConstants.CENTER);
+		txtInvit.setEditable(false);
+		txtInvit.setColumns(10);
+		txtInvit.setBounds(276, 684, 116, 22);
+		panel_1.add(txtInvit);
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField_6.setBorder(null);
-		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(446, 607, 116, 22);
-		panel_1.add(textField_6);
+		txtVempierre = new JTextField();
+		txtVempierre.setText("VamPierre");
+		txtVempierre.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtVempierre.setBorder(null);
+		txtVempierre.setHorizontalAlignment(SwingConstants.CENTER);
+		txtVempierre.setEditable(false);
+		txtVempierre.setColumns(10);
+		txtVempierre.setBounds(446, 607, 116, 22);
+		panel_1.add(txtVempierre);
 		
-		textField_7 = new JTextField();
-		textField_7.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField_7.setBorder(null);
-		textField_7.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_7.setEditable(false);
-		textField_7.setColumns(10);
-		textField_7.setBounds(495, 426, 116, 22);
-		panel_1.add(textField_7);
+		txtLensrocket = new JTextField();
+		txtLensrocket.setText("LensRocket");
+		txtLensrocket.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtLensrocket.setBorder(null);
+		txtLensrocket.setHorizontalAlignment(SwingConstants.CENTER);
+		txtLensrocket.setEditable(false);
+		txtLensrocket.setColumns(10);
+		txtLensrocket.setBounds(495, 426, 116, 22);
+		panel_1.add(txtLensrocket);
 		
-		textField_8 = new JTextField();
-		textField_8.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textField_8.setBorder(null);
-		textField_8.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_8.setEditable(false);
-		textField_8.setColumns(10);
-		textField_8.setBounds(446, 240, 116, 22);
-		panel_1.add(textField_8);
+		txtNomercyril = new JTextField();
+		txtNomercyril.setText("NoMerCyril");
+		txtNomercyril.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtNomercyril.setBorder(null);
+		txtNomercyril.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNomercyril.setEditable(false);
+		txtNomercyril.setColumns(10);
+		txtNomercyril.setBounds(446, 240, 116, 22);
+		panel_1.add(txtNomercyril);
 		
 		JPanel panel_10 = new JPanel();
 		panel_10.setBounds(124, 353, 60, 60);
@@ -296,7 +302,7 @@ public class Jeu {
 				}
 		    }		   
 		});
-		button.setBounds(256, 947, 178, 29);
+		button.setBounds(243, 634, 178, 29);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel_1.add(button);
 		
@@ -306,13 +312,13 @@ public class Jeu {
 		lettres.setEditable(false);
 		lettres.setColumns(10);
 		lettres.setBorder(null);
-		lettres.setBounds(145, 63, 374, 67);
+		lettres.setBounds(147, 0, 374, 67);
 		panel_1.add(lettres);
 		
 		textField_9 = new JTextField();
 		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		textField_9.setColumns(10);
-		textField_9.setBounds(129, 888, 433, 46);
+		textField_9.setBounds(124, 91, 433, 46);
 		panel_1.add(textField_9);
 		
 	}
