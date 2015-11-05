@@ -1,4 +1,4 @@
-package client;
+package server;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,6 +11,10 @@ public class Dictionnary implements java.io.Serializable {
 	private String osType_slash;
 	private String currentPattern;
 
+	public String getName(){
+		return this.name;
+	}
+	
 	public Dictionnary(String name, String path) {
 		this.name = name;
 		this.path = path;
@@ -98,4 +102,6 @@ public class Dictionnary implements java.io.Serializable {
 		// Dictionnary("dictionnaireFrançais","dictionnaire");
 		// System.out.println(monDico);
 	}
+
+
 }

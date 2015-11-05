@@ -16,7 +16,7 @@ public class Server {
 
 		try {
 			LocateRegistry.createRegistry(1099);
-			MessageHandler gm = new MessageHandler();
+			ServerRMI gm = new ServerRMI();
 			Naming.rebind("Dicobomb", gm);
 			// GameManager.startGame("Partie1");
 

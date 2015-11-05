@@ -24,6 +24,10 @@ public class User implements java.io.Serializable {
 	public void setGame(String gamename) {
 		this.gamename = gamename;
 	}
+	
+	public void setName(String newname) {
+		this.username = newname;
+	}
 
 	// Methodes : ToString()
 	@Override
