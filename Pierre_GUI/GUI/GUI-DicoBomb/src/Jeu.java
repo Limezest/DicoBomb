@@ -53,6 +53,8 @@ public class Jeu {
 					Jeu window = new Jeu();
 					window.frmDicobomb.setVisible(true);
 					window.frmDicobomb.setLocationRelativeTo(null);
+					window.frmDicobomb.setResizable(false);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -74,8 +76,8 @@ public class Jeu {
 		frmDicobomb = new JFrame();
 		frmDicobomb.setTitle("DicoBomb");
 		Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int hauteur = (int)tailleEcran.getHeight();
-		int largeur = (int)tailleEcran.getWidth();
+//		int hauteur = (int)tailleEcran.getHeight();
+//		int largeur = (int)tailleEcran.getWidth();
 		frmDicobomb.setBounds(950, -45, 1220, 900);
 		frmDicobomb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDicobomb.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -107,12 +109,12 @@ public class Jeu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane popup = new JOptionPane();
+				@SuppressWarnings("static-access")
 				int retour = popup.showConfirmDialog(btnQuitterLaPartie, "Êtes-vous sûr(e) ?",
 														"Quitter la partie", JOptionPane.OK_CANCEL_OPTION);
 				
 				if (retour == JOptionPane.OK_OPTION) {
 					// TODO: Appeler la fonction pour quitter la partie
-					System.out.println("Quitter la partie");
 				}
 				
 			}

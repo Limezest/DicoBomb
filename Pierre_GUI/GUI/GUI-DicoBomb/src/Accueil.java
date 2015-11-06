@@ -25,6 +25,8 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 
 import java.awt.GridLayout;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
@@ -91,9 +93,20 @@ public class Accueil {
 		lblChoisissezUnPseudo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		txtIci = new JTextField();
+		txtIci.addFocusListener(new FocusListener() {
+            public void focusLost(final FocusEvent pE) {}
+            public void focusGained(final FocusEvent pE) {
+            	txtIci.selectAll();
+            }
+        });
+		frame.add(txtIci);
+		frame.validate();
+
+        txtIci.requestFocus();
+        
 		panel_2.add(txtIci);
 		txtIci.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIci.setText("Ici");
+		txtIci.setText("ici");
 		txtIci.setBackground(Color.WHITE);
 		txtIci.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtIci.setColumns(10);

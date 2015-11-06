@@ -55,6 +55,7 @@ public class Choix_Serveur {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 798, 682);
+		frame.setResizable(false);;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -81,20 +82,20 @@ public class Choix_Serveur {
 		    {
 		    }		   
 		});
-		btnNouveauServeur.setBounds(37, 13, 146, 25);
+		btnNouveauServeur.setBounds(87, 13, 154, 25);
 		frame.getContentPane().add(btnNouveauServeur);
 		
-		JButton btnActualiser = new JButton("Actualiser");
-		btnActualiser.addActionListener( new ActionListener()
-		{
-		    public void actionPerformed(ActionEvent e)
-		    {
-				model.addElement("B");
-				JList<String> list = new JList(model);
-		    }		   
-		});
-		btnActualiser.setBounds(194, 13, 97, 25);
-		frame.getContentPane().add(btnActualiser);
+//		JButton btnActualiser = new JButton("Actualiser");
+//		btnActualiser.addActionListener( new ActionListener()
+//		{
+//		    public void actionPerformed(ActionEvent e)
+//		    {
+//				model.addElement("B");
+//				JList<String> list = new JList(model);
+//		    }		   
+//		});
+//		btnActualiser.setBounds(194, 13, 97, 25);
+//		frame.getContentPane().add(btnActualiser);
 		
 		ListSelectionListener listSelectionListener = new ListSelectionListener() {
 		      public void valueChanged(ListSelectionEvent listSelectionEvent) {

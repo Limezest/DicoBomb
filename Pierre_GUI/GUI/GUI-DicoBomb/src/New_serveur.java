@@ -75,7 +75,7 @@ public class New_serveur {
 		textField_2.setBounds(235, 13, 160, 41);
 		frmNouvellePartie.getContentPane().add(textField_2);
 		
-		String[] sListe = {"Français", "Anglais"};
+		String[] sListe = {"FranÃ§ais", "Anglais"};
 		JComboBox comboBox = new JComboBox(sListe);
 		comboBox.setBounds(245, 88, 150, 25);
 		frmNouvellePartie.getContentPane().add(comboBox);
