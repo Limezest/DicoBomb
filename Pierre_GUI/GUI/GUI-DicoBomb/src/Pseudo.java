@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.Icon;
 
 public class Pseudo {
 
@@ -77,8 +78,8 @@ public class Pseudo {
 		txtChoisissezUnPseudo.setBackground(Color.LIGHT_GRAY);
 		txtChoisissezUnPseudo.setEditable(false);
 		txtChoisissezUnPseudo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtChoisissezUnPseudo.setText("Choisissez un pseudo :");
-		txtChoisissezUnPseudo.setBounds(47, 66, 182, 22);
+		txtChoisissezUnPseudo.setText("Choisir un pseudo :");
+		txtChoisissezUnPseudo.setBounds(71, 66, 152, 22);
 		frmDicobombpseudo.getContentPane().add(txtChoisissezUnPseudo);
 		txtChoisissezUnPseudo.setColumns(10);
 		
@@ -100,12 +101,18 @@ public class Pseudo {
 		frmDicobombpseudo.getContentPane().add(textField_2);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(236, 136, 117, 20);
+		panel.setBounds(291, 147, 107, 20);
 		frmDicobombpseudo.getContentPane().add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel Icon = new JLabel( new ImageIcon( "IconDicoBomb.jpg"));
-		Icon.setBackground(new Color(192, 192, 192));
 		panel.setLayout(new BorderLayout(0, 0));
-		panel.add(Icon);
+		panel.add(Icon, BorderLayout.NORTH);
+		
+		JLabel LogoCPE = new JLabel( new ImageIcon( "LogoCPE.jpg"));
+		LogoCPE.setBounds(0, 133, 50, 34);
+		frmDicobombpseudo.getContentPane().add(LogoCPE);
+		
+		
 	}
 }
