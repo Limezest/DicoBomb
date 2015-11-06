@@ -2,9 +2,7 @@ package main;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import chatServer.Server;
 import server.Actions;
 import server.ServerRMIClient;
 
@@ -92,12 +90,12 @@ public class GameManager {
 	public static String startGame(String gamename) throws RemoteException {
 		System.out.println("Lancement de la partie :" + gamename);
 
-		// Selection aléatoire du premier joueur (index du tableau UserInGame)
+		// Selection aleatoire du premier joueur (index du tableau UserInGame)
 		Game game = getItem(gamename);
 		int random = (int) (Math.random() * (game.getUsersInGame().size()) + 1);
 		game.setCurrentUser(random - 1);
 
-		// Remplacer les system.out.println par une fonction qui envoie aux
+		//contact avec les clients
 		for (String userInGame : game.getUsersInGame()){
 			ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.startGame, game.getUsersInGame().get(game.getCurrentUser()));
 		}
