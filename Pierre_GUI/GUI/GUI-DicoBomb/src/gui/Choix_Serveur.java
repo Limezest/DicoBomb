@@ -1,3 +1,5 @@
+package gui;
+
 import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
@@ -80,6 +82,13 @@ public class Choix_Serveur {
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
+		    	try {
+		    		System.out.println("oui");
+		    		Thread t1 = new Thread(new New_serveur());
+		    		t1.start();
+		    	} catch(Exception exception) {
+		    		exception.printStackTrace();
+		    	}
 		    }		   
 		});
 		btnNouveauServeur.setBounds(87, 13, 154, 25);

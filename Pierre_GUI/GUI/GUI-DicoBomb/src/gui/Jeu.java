@@ -1,3 +1,4 @@
+package gui;
 import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
@@ -43,6 +44,7 @@ public class Jeu {
 	private JTextField lettres;
 	private JTextField textField_9;
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -84,6 +86,10 @@ public class Jeu {
 		
 		JPanel panel = new JPanel();
 		frmDicobomb.getContentPane().add(panel, BorderLayout.EAST);
+		
+
+		ImageIcon logo = new ImageIcon("LogoDicoBomb.jpg");
+		frmDicobomb.setIconImage(logo.getImage());
 		
 		JTextArea textArea = new JTextArea();
 		panel.add(textArea);
@@ -352,8 +358,9 @@ public class Jeu {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					JOptionPane.showMessageDialog(null , "Mot : " + textField_9.getText());
-					// TODO: Appeler la fonction de vérification
+					String contenu = textField_9.getText();
+					JOptionPane.showMessageDialog(null , "Mot : " + contenu);
+					//  TODO: Appeler la fonction de vérification
 				}
 			}
 		});

@@ -1,3 +1,4 @@
+package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,7 +9,7 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 
 
-public class New_serveur {
+public class New_serveur implements Runnable {
 
 	private JFrame frmNouvellePartie;
 	private JTextField txtEntrezUnNom;
@@ -90,5 +91,19 @@ public class New_serveur {
 		txtChoisissezLeMode.setBackground(new Color(238, 238, 238));
 		txtChoisissezLeMode.setBounds(30, 88, 214, 22);
 		frmNouvellePartie.getContentPane().add(txtChoisissezLeMode);
+	}
+
+	@Override
+	public void run() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					New_serveur window = new New_serveur();
+					window.frmNouvellePartie.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

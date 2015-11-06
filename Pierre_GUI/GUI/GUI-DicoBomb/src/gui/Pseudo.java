@@ -1,3 +1,4 @@
+package gui;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -9,6 +10,10 @@ import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Color;
 
 public class Pseudo {
@@ -58,6 +63,13 @@ public class Pseudo {
 		JButton btnFaisPter = new JButton("Fais p\u00E9ter!");
 		btnFaisPter.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnFaisPter.setBounds(57, 109, 106, 25);
+		btnFaisPter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("fais péter");
+			}
+		});
+		
 		frmDicobombpseudo.getContentPane().add(btnFaisPter);
 		
 		JButton btnAnnuler = new JButton("Annuler");
@@ -68,6 +80,17 @@ public class Pseudo {
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField.setBounds(235, 55, 160, 41);
+		textField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		frmDicobombpseudo.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -97,6 +120,17 @@ public class Pseudo {
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textField_2.setColumns(10);
 		textField_2.setBounds(235, 10, 160, 41);
+		textField_2.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		frmDicobombpseudo.getContentPane().add(textField_2);
 		
 		JPanel panel = new JPanel();
@@ -107,5 +141,6 @@ public class Pseudo {
 		Icon.setBackground(new Color(192, 192, 192));
 		panel.setLayout(new BorderLayout(0, 0));
 		panel.add(Icon);
+		frmDicobombpseudo.getRootPane().setDefaultButton(btnFaisPter);
 	}
 }
