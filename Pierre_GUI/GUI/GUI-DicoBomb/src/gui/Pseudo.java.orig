@@ -140,14 +140,18 @@ public class Pseudo {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel Icon = new JLabel( new ImageIcon( "IconDicoBomb.jpg"));
-		Icon.setBackground(new Color(192, 192, 192));
 		panel.setLayout(new BorderLayout(0, 0));
+<<<<<<< HEAD:Pierre_GUI/GUI/GUI-DicoBomb/src/gui/Pseudo.java
+		panel.add(Icon);
+		frmDicobombpseudo.getRootPane().setDefaultButton(btnFaisPter);
+=======
 		panel.add(Icon, BorderLayout.NORTH);
 		
 		JLabel LogoCPE = new JLabel( new ImageIcon( "LogoCPE.jpg"));
 		LogoCPE.setBounds(0, 133, 50, 34);
 		frmDicobombpseudo.getContentPane().add(LogoCPE);
-				frmDicobombpseudo.getRootPane().setDefaultButton(btnFaisPter);
 		
+		
+>>>>>>> adab7037c40d1527823d7a0d156782e200e541f3:Pierre_GUI/GUI/GUI-DicoBomb/src/Pseudo.java
 	}
 }
