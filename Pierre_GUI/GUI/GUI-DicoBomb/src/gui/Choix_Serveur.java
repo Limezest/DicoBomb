@@ -30,16 +30,6 @@ public class Choix_Serveur implements Runnable {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Choix_Serveur window = new Choix_Serveur();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
 	}
 
 	/**
@@ -83,7 +73,6 @@ public class Choix_Serveur implements Runnable {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	try {
-		    		System.out.println("oui");
 		    		new New_serveur();
 		    	} catch(Exception exception) {
 		    		exception.printStackTrace();

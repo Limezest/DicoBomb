@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -72,6 +73,7 @@ public class Pseudo {
 				//  TODO: Lancer Choix_Serveur.java
 //				Thread t1 = new Thread(new Choix_Serveur());
 //				t1.start();
+
 				try {
 					new Choix_Serveur();
 				} catch (Exception exception) {

@@ -95,6 +95,7 @@ public class New_serveur implements Runnable {
 
 	@Override
 	public void run() {
+		System.out.println("new partie");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
