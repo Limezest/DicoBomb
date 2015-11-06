@@ -67,7 +67,16 @@ public class Pseudo {
 		btnFaisPter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("fais péter");
+				//  TODO: Verifier adresse ? -> 
+				//  TODO: Verifier pseudo ? -> peut-etre generer pseudo aléatoire
+				//  TODO: Lancer Choix_Serveur.java
+//				Thread t1 = new Thread(new Choix_Serveur());
+//				t1.start();
+				try {
+					new Choix_Serveur();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
 			}
 		});
 		
@@ -147,7 +156,8 @@ public class Pseudo {
 		JLabel LogoCPE = new JLabel( new ImageIcon( "LogoCPE.jpg"));
 		LogoCPE.setBounds(0, 133, 50, 34);
 		frmDicobombpseudo.getContentPane().add(LogoCPE);
-				frmDicobombpseudo.getRootPane().setDefaultButton(btnFaisPter);
+		
+		frmDicobombpseudo.getRootPane().setDefaultButton(btnFaisPter);
 		
 	}
 }

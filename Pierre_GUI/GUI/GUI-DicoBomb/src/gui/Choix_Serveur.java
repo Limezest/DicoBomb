@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.EventListener;
 
 
-public class Choix_Serveur {
+public class Choix_Serveur implements Runnable {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -30,16 +30,16 @@ public class Choix_Serveur {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Choix_Serveur window = new Choix_Serveur();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Choix_Serveur window = new Choix_Serveur();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
 	}
 
 	/**
@@ -84,8 +84,7 @@ public class Choix_Serveur {
 		    {
 		    	try {
 		    		System.out.println("oui");
-		    		Thread t1 = new Thread(new New_serveur());
-		    		t1.start();
+		    		new New_serveur();
 		    	} catch(Exception exception) {
 		    		exception.printStackTrace();
 		    	}
@@ -118,5 +117,19 @@ public class Choix_Serveur {
 		    frame.setSize(770, 630);
 		    frame.setVisible(true);
 		
+	}
+
+	@Override
+	public void run() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Choix_Serveur window = new Choix_Serveur();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
