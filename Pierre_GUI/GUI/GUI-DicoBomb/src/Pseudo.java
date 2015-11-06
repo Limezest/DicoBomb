@@ -1,9 +1,13 @@
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Color;
 
@@ -48,15 +52,17 @@ public class Pseudo {
 		frmDicobombpseudo.setBounds(100, 100, 428, 215);
 		frmDicobombpseudo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDicobombpseudo.getContentPane().setLayout(null);
+		ImageIcon logo = new ImageIcon("LogoDicoBomb.jpg");
+		frmDicobombpseudo.setIconImage(logo.getImage());
 		
 		JButton btnFaisPter = new JButton("Fais p\u00E9ter!");
 		btnFaisPter.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnFaisPter.setBounds(46, 121, 106, 25);
+		btnFaisPter.setBounds(57, 109, 106, 25);
 		frmDicobombpseudo.getContentPane().add(btnFaisPter);
 		
 		JButton btnAnnuler = new JButton("Annuler");
 		btnAnnuler.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAnnuler.setBounds(225, 121, 97, 25);
+		btnAnnuler.setBounds(236, 109, 97, 25);
 		frmDicobombpseudo.getContentPane().add(btnAnnuler);
 		
 		textField = new JTextField();
@@ -92,5 +98,14 @@ public class Pseudo {
 		textField_2.setColumns(10);
 		textField_2.setBounds(235, 10, 160, 41);
 		frmDicobombpseudo.getContentPane().add(textField_2);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(236, 136, 117, 20);
+		frmDicobombpseudo.getContentPane().add(panel);
+		
+		JLabel Icon = new JLabel( new ImageIcon( "IconDicoBomb.jpg"));
+		Icon.setBackground(new Color(192, 192, 192));
+		panel.setLayout(new BorderLayout(0, 0));
+		panel.add(Icon);
 	}
 }
