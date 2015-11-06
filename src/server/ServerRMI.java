@@ -4,16 +4,25 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class MessageHandler extends UnicastRemoteObject implements MessageHandlerInterface {
+import main.Game;
+import main.GameManager;
+import main.User;
+import main.UserManager;
+
+public class ServerRMI extends UnicastRemoteObject implements ServerRMInterface {
 	private static final long serialVersionUID = 1L;
 
-	protected MessageHandler() throws RemoteException {
+	protected ServerRMI() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public void newUser(String username) throws RemoteException {
-		UserManager.addItem(username);
+		try {
+			UserManager.addItem(username,getClientHost());
+			ServerRMIClient.addClient(getClientHost());
+		}catch(Exception e){}
+		
 	}
 
 	public void newGame(String gamename, String dico) throws RemoteException {
@@ -40,8 +49,8 @@ public class MessageHandler extends UnicastRemoteObject implements MessageHandle
 		UserManager.delItem(username);
 	}
 
-	public void nextPlayer(String username) throws RemoteException {
-		GameManager.nextPlayer(username);
+	public void nextPlayer(String gamename,String word) throws RemoteException {
+		GameManager.nextPlayer(gamename,word);
 	}
 
 	public void startGame(String gamename) throws RemoteException {

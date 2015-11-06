@@ -1,8 +1,12 @@
-package server;
+package main;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import chatServer.Server;
+import server.Actions;
+import server.ServerRMIClient;
 
 public class GameManager {
 	// Attributs
@@ -54,31 +58,38 @@ public class GameManager {
 	}
 
 	// Methodes : Parties
-	public static void joinGame(String username, String gamename) {
+	public static void joinGame(String username, String gamename) throws RemoteException {
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)) {
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
 
 			game.addUserToGame(username);
 			user.setGame(game.getName());
+			for (String userInGame : game.getUsersInGame()){
+				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.userJoinGame, username);
+			}
 		} else {
 			System.out.println("Probleme joinGame");
 		}
 	}
 
-	public static void quitGame(String username, String gamename) {
+	public static void quitGame(String username, String gamename) throws RemoteException {
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)) {
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
 
 			game.delUserToGame(username);
 			user.setGame(null);
+			for (String userInGame : game.getUsersInGame()){
+				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.userQuitGame, username);
+			}
+			//appel des procedures RMI
 		} else {
 			System.out.println("Probleme quitGame");
 		}
 	}
 
-	public static void startGame(String gamename) {
+	public static String startGame(String gamename) throws RemoteException {
 		System.out.println("Lancement de la partie :" + gamename);
 
 		// Selection aléatoire du premier joueur (index du tableau UserInGame)
@@ -87,29 +98,28 @@ public class GameManager {
 		game.setCurrentUser(random - 1);
 
 		// Remplacer les system.out.println par une fonction qui envoie aux
-		// client
-		System.out.println("Au tour de :" + game.getUsersInGame().get(random - 1));
-	}
-
-	public static void nextPlayer(String gamename) {
+		for (String userInGame : game.getUsersInGame()){
+			ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.startGame, game.getUsersInGame().get(game.getCurrentUser()));
+		}
+		return game.getUsersInGame().get(game.getCurrentUser());
+	}	
+	
+	public static void nextPlayer(String gamename,String word) throws RemoteException {
 		Game game = getItem(gamename);
-		String pattern = game.getPattern();
-		//String word;
-		//Scanner keyboard = new Scanner(System.in);
-		String currentUser = game.getUsersInGame().get(game.getCurrentUser());
-		System.out.println("C'est au tour de :" + currentUser);
-		System.out.println("Voici un patter :" + pattern);
-		//do {
-			//System.out.println("Entre un mot");
-			//word = (keyboard.nextLine());
-			// ajouter la gestion du temps
-		//} while (!(game.testWord(word)));
-		System.out.println("bien joué, ce mot existe");
-		// changement du joueur
-		if (game.getCurrentUser() >= game.getUsersInGame().size() - 1) {
-			game.setCurrentUser(0);
-		} else {
-			game.setCurrentUser(game.getCurrentUser() + 1);
+		
+		if (game.testWord(word)){
+			//si mot existe - changement de joueur
+			if (game.getCurrentUser() >= game.getUsersInGame().size() - 1) {
+				game.setCurrentUser(0);
+			} else {
+				game.setCurrentUser(game.getCurrentUser() + 1);
+			}
+			for (String userInGame : game.getUsersInGame()){
+				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.nextPlayer,game.newPattern()+","+game.getUsersInGame().get((game.getCurrentUser())));
+			}
+		}
+		else {
+			ServerRMIClient.invokeRMIClient(UserManager.getItem(game.getUsersInGame().get(game.getCurrentUser())).getIP(),Actions.wordNotExist,"");
 		}
 	}
 }
