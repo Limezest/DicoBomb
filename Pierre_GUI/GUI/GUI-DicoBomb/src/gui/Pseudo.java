@@ -26,6 +26,7 @@ public class Pseudo {
 	private JTextField textField_2;
 
 	/**
+	 * 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
