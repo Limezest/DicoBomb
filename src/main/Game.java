@@ -14,7 +14,7 @@ public class Game implements java.io.Serializable {
 	public Game(String gamename, String dicoName) {
 		super();
 		this.name = gamename;
-		this.dico = new Dictionnary("dico1", "/Users/benoitmenard/Documents/genie_logiciel/git/src/main");
+		this.dico = new Dictionnary("dico1", "F:\\repositories\\dicobomb\\dictionnaire");
 	}
 
 	// Methodes : getters et setters
@@ -47,14 +47,21 @@ public class Game implements java.io.Serializable {
 	public boolean testWord(String word) {
 		return dico.wordExiste(word);
 	}
-
-	public String getPattern() {
-		return dico.genPattern();
+	
+	public boolean isUsedWord(String word){
+		return dico.isUsedWord(word);
 	}
 
-	public boolean newPattern() {
-		dico.genPattern();
-		return true;
+	public String getCurrentPattern() {
+		return dico.getCurrentPattern();
+	}
+
+	public String newPattern() {
+		return dico.genPattern();
+	}
+	
+	public ArrayList<String> getUsedWords(){
+		return dico.getUsedWords();
 	}
 
 	// Methodes : ToString()

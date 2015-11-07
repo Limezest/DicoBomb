@@ -33,14 +33,6 @@ public class GameManager {
 	}
 
 	public static boolean itemExist(String gamename) {
-//		String itemName;
-//		for (Game item : games) {
-//			itemName = item.getName();
-//			if (itemName.compareTo(gamename) == 0) {
-//				// System.out.println("Cette partie existe :"+itemName);
-//				return true;
-//			}
-//		}
 		return games.contains(getItem(gamename));
 	}
 
@@ -57,37 +49,46 @@ public class GameManager {
 
 	// Methodes : Parties
 	public static void joinGame(String username, String gamename) throws RemoteException {
+		String ip;
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)) {
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
 
 			game.addUserToGame(username);
 			user.setGame(game.getName());
+			
+			// RMI
 			for (String userInGame : game.getUsersInGame()){
-				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.userJoinGame, username);
+				ip = UserManager.getItem(userInGame).getIP();
+				System.out.println("joinGame : envoie a :"+UserManager.getItem(userInGame).getIP());
+				ServerRMIClient.invokeRMIClient(ip,Actions.userJoinGame, username);
 			}
 		} else {
-			System.out.println("Probleme joinGame");
+			System.out.println("Probleme joinGame de : "+username+" sur "+gamename);
 		}
 	}
 
 	public static void quitGame(String username, String gamename) throws RemoteException {
+		String ip;
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)) {
 			Game game = GameManager.getItem(gamename);
 			User user = UserManager.getItem(username);
 
 			game.delUserToGame(username);
 			user.setGame(null);
+			
+			// RMI
 			for (String userInGame : game.getUsersInGame()){
-				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.userQuitGame, username);
+				ip = UserManager.getItem(userInGame).getIP();
+				System.out.println("quitGame : envoie a :"+UserManager.getItem(userInGame).getIP());
+				ServerRMIClient.invokeRMIClient(ip,Actions.userQuitGame, username);
 			}
-			//appel des procedures RMI
 		} else {
-			System.out.println("Probleme quitGame");
+			System.out.println("Probleme quitGame de : "+username+" sur "+gamename);
 		}
 	}
 
-	public static String startGame(String gamename) throws RemoteException {
+	public static void startGame(String gamename) throws RemoteException {
 		System.out.println("Lancement de la partie :" + gamename);
 
 		// Selection aleatoire du premier joueur (index du tableau UserInGame)
@@ -95,29 +96,49 @@ public class GameManager {
 		int random = (int) (Math.random() * (game.getUsersInGame().size()) + 1);
 		game.setCurrentUser(random - 1);
 
-		//contact avec les clients
+		// RMI
+		System.out.println(game.getUsersInGame().toString());
 		for (String userInGame : game.getUsersInGame()){
-			ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.startGame, game.getUsersInGame().get(game.getCurrentUser()));
+			System.out.println("startGame : envoie a :"+UserManager.getItem(userInGame).getIP());
+			ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.startGame,(game.getUsersInGame().get((game.getCurrentUser()))+","+game.newPattern()));
 		}
-		return game.getUsersInGame().get(game.getCurrentUser());
 	}	
 	
 	public static void nextPlayer(String gamename,String word) throws RemoteException {
 		Game game = getItem(gamename);
+		String ip;
+
 		
+		String currentUsername = game.getUsersInGame().get(game.getCurrentUser());
+
 		if (game.testWord(word)){
-			//si mot existe - changement de joueur
+			//si mot existe et non deja utilise => changement de joueur
 			if (game.getCurrentUser() >= game.getUsersInGame().size() - 1) {
 				game.setCurrentUser(0);
 			} else {
 				game.setCurrentUser(game.getCurrentUser() + 1);
 			}
+			UserManager.getItem(currentUsername).addChar(word);
+			// RMI
 			for (String userInGame : game.getUsersInGame()){
-				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.nextPlayer,game.newPattern()+","+game.getUsersInGame().get((game.getCurrentUser())));
+				ip = UserManager.getItem(userInGame).getIP();
+				currentUsername = game.getUsersInGame().get(game.getCurrentUser());
+				System.out.println("nextPlayer : envoie a :"+ip);
+				ServerRMIClient.invokeRMIClient(ip,Actions.nextPlayer,(currentUsername+","+game.newPattern()));
 			}
 		}
 		else {
-			ServerRMIClient.invokeRMIClient(UserManager.getItem(game.getUsersInGame().get(game.getCurrentUser())).getIP(),Actions.wordNotExist,"");
+			String message;
+			ip = UserManager.getItem(game.getUsersInGame().get(game.getCurrentUser())).getIP();
+			if (game.isUsedWord(word)){
+				message = "Mot deja utilise";
+			}
+			else {message = "Mot non présent dans le dictionnaire";}
+			// RMI
+			System.out.println("wordNotExist : envoie a :"+ip);
+			ServerRMIClient.invokeRMIClient(ip,Actions.wordNotExist,message);
 		}
+		System.out.println(game.getUsedWords());
+		System.out.println(UserManager.getItem(currentUsername).getUsedChars());
 	}
 }

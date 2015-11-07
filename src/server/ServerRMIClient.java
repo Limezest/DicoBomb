@@ -54,7 +54,7 @@ public class ServerRMIClient {
     			crmi.cri.nextPlayer(message);
     			break;
     		case "wordNotExist":
-    			crmi.cri.wordNotExist();
+    			crmi.cri.wordNotExist(message);
     			break;
     	}
     }
@@ -65,6 +65,9 @@ public class ServerRMIClient {
     }
     public static void delclient(String ip){
     	hashClient.remove(ip);
+    }
+    public static Hashtable<String, ServerRMIClient> getClient(){
+    	return hashClient;
     }
     
     public static void main (String [] argv) throws RemoteException {

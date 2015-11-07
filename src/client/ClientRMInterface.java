@@ -8,7 +8,7 @@ public interface ClientRMInterface extends Remote{
 	 public void changeCurrentUser(String username) throws RemoteException;
 	 public void userJoinGame(String username) throws RemoteException;
 	 public void userQuitGame(String username) throws RemoteException;
-	 public void startGame(String username) throws RemoteException;
+	 public void startGame(String message) throws RemoteException;
 	 public void nextPlayer(String message) throws RemoteException;
-	 public void wordNotExist() throws RemoteException;
+	 public void wordNotExist(String message) throws RemoteException;
 }

@@ -33,25 +33,30 @@ public class Client {
 		crmic = new ClientRMIClient(ip);
 	}
 
-	public static void main(String[] args) {
-		Client client = new Client();
+	public static void client1(){
 		try {
-//			client.crmic.newUser("benoit");
-			client.crmic.newUser("pierre");
-//			client.crmic.newUser("cyril");
-//			client.crmic.newUser("lens");
-//			client.crmic.newGame("Partie1", "Dico1");
-//			client.crmic.newGame("Partie2", "Dico1");
-//			client.crmic.joinGame("benoit", "Partie1");
-			client.crmic.joinGame("pierre", "Partie1");
-//			client.crmic.joinGame("cyril", "Partie1");
-//			client.crmic.joinGame("lens", "Partie1");
-//			client.crmic.userQuitGame("pierre", "Partie1");
-			client.crmic.startGame("Partie1");
-//			System.out.println(client.crmic.getUsers());
-//			System.out.println(client.crmic.getGames());
+			Client.crmic.newUser("benoit");
+			Client.crmic.newGame("Partie1", "Dico");
+			Client.crmic.joinGame("benoit", "Partie1");
+			//Client.crmic.startGame("Partie1");
+
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void client2(){
+		try {
+			Client.crmic.newUser("pierre");
+			Client.crmic.joinGame("pierre", "Partie1");
+			Client.crmic.startGame("Partie1");
+
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		new Client();
+		client1();
+
 	}
 }

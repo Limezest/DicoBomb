@@ -10,7 +10,8 @@ import server.ServerRMIClient;
 
 public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInterface{
 	private static final long serialVersionUID = 1L;
-
+	private Thread t ; 
+	
 	protected ClientRMIServer() throws RemoteException {
 		super();
 	}
@@ -32,23 +33,19 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 	public void userQuitGame(String username) throws RemoteException{
 		System.out.println("Un joueur a quiter la partie: "+username);
 	}
-	public void startGame(String username) throws RemoteException{
-		System.out.println("Lancement de la partie, on commence avec :"+username);
-		cmdLineInterface();
+	public void startGame(String message) throws RemoteException{
+		System.out.println("Lancement de la partie, on commence avec :"+message.split(",")[0]+" avec le pattern :"+message.split(",")[1]);
+		t = new Thread(new cmdLineClient());
+		t.start();
 	}
 	public void nextPlayer(String message) throws RemoteException{
 		System.out.println("C'est au tour de :"+message.split(",")[0]+" avec le pattern :"+message.split(",")[1]);
-		cmdLineInterface();
+		t = new Thread(new cmdLineClient());
+		t.start();
 	}
-	public void wordNotExist() throws RemoteException{
-		System.out.println("Mauvais mot, essaye encore");
-		cmdLineInterface();
-	}
-	public String inputKeyboard(){
-		Scanner sc = new Scanner(System.in);
-		return sc.nextLine();
-	}
-	public void cmdLineInterface() throws RemoteException{
-		client.Client.crmic.nextPlayer("Partie1", inputKeyboard());
+	public void wordNotExist(String message) throws RemoteException{
+		System.out.println(message);
+		t = new Thread(new cmdLineClient());
+		t.start();
 	}
 }
