@@ -5,20 +5,21 @@ import java.rmi.registry.LocateRegistry;
 
 public class Server {
 	private static ServerRMI srmi;
-	
-	public Server(String listenIP){
-		this.newServer(listenIP);
+
+	public Server() {
+		this.newServer();
 	}
-	
-	public ServerRMIClient newClient(String destIP){
+
+	public ServerRMIClient newClient(String destIP) {
 		ServerRMIClient crmi;
-		crmi = new ServerRMIClient(destIP); 
+		crmi = new ServerRMIClient(destIP);
 		return crmi;
 	}
-	public void newServer(String listenIP){
+
+	public void newServer() {
 		try {
 			SecurityManager security = System.getSecurityManager();
-			//System.setProperty("java.rmi.server.hostname", listenIP);
+			// System.setProperty("java.rmi.server.hostname", listenIP);
 			if (security != null) {
 				System.setSecurityManager(new java.lang.SecurityManager());
 			}
@@ -31,8 +32,8 @@ public class Server {
 			System.out.println("Erreur serveur : " + e);
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		new Server("192.168.1.1");
+		new Server();
 	}
 }

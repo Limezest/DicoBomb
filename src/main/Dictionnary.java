@@ -3,6 +3,7 @@ package main;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Dictionnary implements java.io.Serializable {
 	private static final long serialVersionUID = 2940976109874271907L;
@@ -25,7 +26,7 @@ public class Dictionnary implements java.io.Serializable {
 		this.name = name;
 		this.path = path;
 		this.usedWords = new ArrayList<String>();
-		//Gestion des differents systèmes d'exploitation
+		//Gestion des differents systï¿½mes d'exploitation
 		if (System.getProperty("os.name").contains("Windows")) {
 			this.osType_slash = "\\";
 		} else {
@@ -52,18 +53,18 @@ public class Dictionnary implements java.io.Serializable {
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);
 			
-			// System.out.println("chemin dico :" + dico_first_word);
+			//System.out.println("chemin dico :" + dico_first_word);
 			while ((ligne = br.readLine()) != null) {
 				if (ligne.compareToIgnoreCase(word) == 0 && ligne.contains(currentPattern) && (!usedWords.contains(word))) {
 					usedWords.add(word);
 					br.close();
 					return true;
 				}
-				br.close();
 			}
+			br.close();
 			
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e);
 		}
 		return false;
 	}
@@ -110,6 +111,9 @@ public class Dictionnary implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Dictionnary [name=" + name + ", path=" + path + "]";
+	}
+	public static void main(String[] args) {
+
 	}
 
 }

@@ -25,8 +25,8 @@ public class ServerRMI extends UnicastRemoteObject implements ServerRMInterface 
 		
 	}
 
-	public void newGame(String gamename, String dico) throws RemoteException {
-		GameManager.addItem(gamename, dico);
+	public void newGame(String gamename, String dico,String creator) throws RemoteException {
+		GameManager.addItem(gamename, dico,creator);
 	}
 
 	public void userQuitGame(String username, String gamename) throws RemoteException {

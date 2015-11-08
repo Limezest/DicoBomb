@@ -20,7 +20,7 @@ public interface ServerRMInterface extends Remote {
 
 	public void newUser(String username) throws RemoteException;
 
-	public void newGame(String gamename, String dico) throws RemoteException;
+	public void newGame(String gamename, String dico,String creator) throws RemoteException;
 
 	public void nextPlayer(String gamename,String word) throws RemoteException;
 

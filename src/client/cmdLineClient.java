@@ -4,16 +4,14 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class cmdLineClient implements Runnable {
-	public String inputKeyboard(){
-		Scanner sc = new Scanner(System.in);
-		return sc.nextLine();
-	}
+	private Thread keyboard;
+	private Bomb bomb;
 	@Override
 	public void run() {
 		try {
-			client.Client.crmic.nextPlayer("Partie1", inputKeyboard());
-			return;
-		} catch (RemoteException e) {
+				Scanner sc = new Scanner(System.in);
+				Client.crmic.nextPlayer("Partie1",  sc.nextLine());
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

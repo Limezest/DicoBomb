@@ -7,5 +7,6 @@ public enum Actions {
 	userQuitGame,
 	startGame,
 	nextPlayer,
-	wordNotExist;
+	wordNotExist,
+	newLive;
 }

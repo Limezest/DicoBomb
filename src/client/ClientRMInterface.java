@@ -11,4 +11,5 @@ public interface ClientRMInterface extends Remote{
 	 public void startGame(String message) throws RemoteException;
 	 public void nextPlayer(String message) throws RemoteException;
 	 public void wordNotExist(String message) throws RemoteException;
+	 public void newLive(String message) throws RemoteException;
 }

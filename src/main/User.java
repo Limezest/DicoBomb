@@ -1,7 +1,9 @@
 package main;
 
+import java.rmi.RemoteException;
 import java.util.Hashtable;
 
+import server.Actions;
 import server.ServerRMIClient;
 
 public class User implements java.io.Serializable {
@@ -11,11 +13,14 @@ public class User implements java.io.Serializable {
 	private String gamename;
 	private String ip;
 	private Hashtable<Character, Integer> usedChars;
+	private Integer live;
+
 	// Contructeur
-	public User(String username,String ip) {
+	public User(String username, String ip) {
 		super();
 		this.username = username;
 		this.ip = ip;
+		this.live = 0;
 		this.usedChars = new Hashtable<Character, Integer>();
 	}
 
@@ -31,35 +36,51 @@ public class User implements java.io.Serializable {
 	public void setGame(String gamename) {
 		this.gamename = gamename;
 	}
-	
+
 	public void setName(String newname) {
 		this.username = newname;
 	}
-	
-	public String getIP(){
+
+	public String getIP() {
 		return this.ip;
 	}
-	
-	public Hashtable<Character, Integer> getUsedChars(){
+
+	public Hashtable<Character, Integer> getUsedChars() {
 		return usedChars;
 	}
-	
-	public void addChar(String word){
-		for (Character item : word.toCharArray()){
-			if (usedChars.containsKey(item)){
-				usedChars.put(item, (usedChars.get(item)+1));
+
+	public void addChar(String word) throws RemoteException {
+		for (Character item : word.toCharArray()) {
+			if (usedChars.containsKey(item)) {
+				usedChars.put(item, (usedChars.get(item) + 1));
+			} else {
+				usedChars.put(item, 1);
 			}
-			else { usedChars.put(item, 1);}
+		}
+
+		// Test si 22 lettres differentes
+		if (usedChars.size() >= 22) {
+			if (live <= 3) {
+				addLive();
+				// System.out.println("Nouvelle vie :"+live);
+				usedChars.clear();
+
+				// RMI
+				ServerRMIClient.invokeRMIClient(ip, Actions.newLive, "Nouvelle vie");
+			}
 		}
 	}
-	// Methodes : ToString()
+
+	public void addLive(){
+		live++;
+	}
+	
+	public void delLive(){
+		live--;
+	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", gamename=" + gamename + ", ip=" + ip + "]";
-	}
-	public static void main(String[] args) {
-		User test = new User("benoit","ip");
-		test.addChar("TEST");
-		System.out.println(test.getUsedChars());
+		return "User [username=" + username + ", gamename=" + gamename + ", ip=" + ip + ", usedChars=" + usedChars
+				+ ", live=" + live + "]";
 	}
 }
