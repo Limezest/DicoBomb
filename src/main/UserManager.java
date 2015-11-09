@@ -24,13 +24,6 @@ public class UserManager {
 	}
 
 	public static boolean itemExist(String username) {
-//		String itemName;
-//		for (User item : users) {
-//			itemName = item.getName();
-//			if (itemName.compareTo(username) == 0) {
-//				return true;
-//			}
-//		}
 		return users.contains(getItem(username));
 	}
 

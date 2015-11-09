@@ -58,12 +58,12 @@ public class ClientRMIClient {
 		this.mhi.userQuitGame(username, gamename);
 	}
 
-	public void newUser(String username) throws RemoteException {
-		this.mhi.newUser(username);
+	public boolean newUser(String username) throws RemoteException {
+		return this.mhi.newUser(username);
 	}
 
-	public void newGame(String gamename, String dico) throws RemoteException {
-		this.mhi.newGame(gamename, dico);
+	public void newGame(String gamename, String dico,String creator) throws RemoteException {
+		this.mhi.newGame(gamename, dico,creator);
 	}
 
 	public void nextPlayer(String gamename, String word) throws RemoteException {
@@ -75,27 +75,6 @@ public class ClientRMIClient {
 	}
 
 	public static void main(String[] argv) throws UnknownHostException {
-		ClientRMIClient cmh = new ClientRMIClient("192.168.1.1");
-		//cmh.connect();
-		try {
 
-			cmh.newUser("benoit");
-			//cmh.newUser("pierre");
-			//cmh.newUser("cyril");
-			//cmh.newUser("lens");
-			cmh.newGame("Partie1", "Dico1");
-			cmh.joinGame("benoit", "Partie1");
-			//cmh.joinGame("pierre", "Partie1");
-			//cmh.joinGame("cyril", "Partie1");
-			//cmh.joinGame("lens", "Partie1");
-			System.out.println(cmh.getUsers());
-			System.out.println(cmh.getGames());
-			// while(true)
-			// {
-			// cmh.nextPlayer("Partie1");
-			// }
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 }

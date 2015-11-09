@@ -2,9 +2,7 @@ package main;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import chatServer.Server;
 import server.Actions;
 import server.ServerRMIClient;
 
@@ -22,9 +20,11 @@ public class GameManager {
 		return games;
 	}
 
-	public static boolean addItem(String gamename, String dicoName) {
-		if (!(games.contains(getItem(gamename)))){
-			games.add(new Game(gamename, dicoName));
+	public static boolean addItem(String gamename, String dicoName, String creator) {
+		if (!(games.contains(getItem(gamename)))) {
+			games.add(new Game(gamename, dicoName, "creator"));
+		} else {
+			return false;
 		}
 		return games.contains(getItem(gamename));
 	}
@@ -35,14 +35,6 @@ public class GameManager {
 	}
 
 	public static boolean itemExist(String gamename) {
-//		String itemName;
-//		for (Game item : games) {
-//			itemName = item.getName();
-//			if (itemName.compareTo(gamename) == 0) {
-//				// System.out.println("Cette partie existe :"+itemName);
-//				return true;
-//			}
-//		}
 		return games.contains(getItem(gamename));
 	}
 
@@ -60,60 +52,31 @@ public class GameManager {
 	// Methodes : Parties
 	public static void joinGame(String username, String gamename) throws RemoteException {
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)) {
-			Game game = GameManager.getItem(gamename);
-			User user = UserManager.getItem(username);
-
-			game.addUserToGame(username);
-			user.setGame(game.getName());
-			for (String userInGame : game.getUsersInGame()){
-				ServerRMIClient.invokeRMIClient(UserManager.getItem(userInGame).getIP(),Actions.userJoinGame, username);
-			}
+			GameManager.getItem(gamename).addUserToGame(username);
 		} else {
-			System.out.println("Probleme joinGame");
+			System.out.println("Probleme joinGame de : " + username + " sur " + gamename);
 		}
 	}
 
-	public static void quitGame(String username, String gamename) {
+	public static void quitGame(String username, String gamename) throws RemoteException {
 		if (UserManager.itemExist(username) && GameManager.itemExist(gamename)) {
-			Game game = GameManager.getItem(gamename);
-			User user = UserManager.getItem(username);
-
-			game.delUserToGame(username);
-			user.setGame(null);
-			//appel des procedures RMI
+			GameManager.getItem(gamename).delUserToGame(username);
 		} else {
-			System.out.println("Probleme quitGame");
+			System.out.println("Probleme quitGame de : " + username + " sur " + gamename);
 		}
 	}
 
-	public static String startGame(String gamename) {
-		System.out.println("Lancement de la partie :" + gamename);
-
-		// Selection aléatoire du premier joueur (index du tableau UserInGame)
-		Game game = getItem(gamename);
-		int random = (int) (Math.random() * (game.getUsersInGame().size()) + 1);
-		game.setCurrentUser(random - 1);
-
-		// Remplacer les system.out.println par une fonction qui envoie aux
-		// client
-		return game.getUsersInGame().get(game.getCurrentUser());
-	}	
-	
-	public static String nextPlayer(String gamename,String word) {
-		Game game = getItem(gamename);
-		
-		if (game.testWord(word)){
-			//si mot existe - changement de joueur
-			if (game.getCurrentUser() >= game.getUsersInGame().size() - 1) {
-				game.setCurrentUser(0);
-			} else {
-				game.setCurrentUser(game.getCurrentUser() + 1);
-			}
-			return (game.getUsersInGame().get(game.getCurrentUser())+","+game.getPattern());
+	public static void startGame(String gamename) throws RemoteException {
+		if (GameManager.itemExist(gamename)) {
+			GameManager.getItem(gamename).gameIsStart();
 		}
-		else {
-			//sinon on continue sur le meme
-			return "false";
-		}
+	}
+
+	public static void nextPlayer(String gamename, String word) throws RemoteException {
+		GameManager.getItem(gamename).nextPlayer(word);
+	}
+
+	public static void banPlayer(String username, String gamename) throws RemoteException {
+		quitGame(username, gamename);
 	}
 }

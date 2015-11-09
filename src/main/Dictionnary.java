@@ -3,6 +3,7 @@ package main;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Dictionnary implements java.io.Serializable {
 	private static final long serialVersionUID = 2940976109874271907L;
@@ -10,45 +11,68 @@ public class Dictionnary implements java.io.Serializable {
 	private String path;
 	private String osType_slash;
 	private String currentPattern;
-
-	public String getName(){
-		return this.name;
+	private ArrayList<String> usedWords;
+	
+	private String getPattern(String word) {
+		String pattern;
+		int nb_char_pattern = 2 + (int) (Math.random() * (3));
+		int randomNum = 0 + (int) (Math.random() * (word.length() - 4));
+		pattern = word.substring(randomNum, randomNum + nb_char_pattern);
+		return pattern;
 	}
+
 	
 	public Dictionnary(String name, String path) {
 		this.name = name;
 		this.path = path;
+		this.usedWords = new ArrayList<String>();
+		//Gestion des differents syst�mes d'exploitation
 		if (System.getProperty("os.name").contains("Windows")) {
 			this.osType_slash = "\\";
 		} else {
 			this.osType_slash = "/";
 		}
-
 	}
-
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public String getCurrentPattern(){
+		return this.currentPattern;
+	}
+	
+	public ArrayList<String> getUsedWords(){
+		return this.usedWords;
+	}
 	public boolean wordExiste(String word) {
 		try {
 			String dico_first_word = path + osType_slash + word.charAt(0) + ".txt";
-			// System.out.println("chemin dico :" + dico_first_word);
+			String ligne;
 			InputStream ips = new FileInputStream(dico_first_word);
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);
-			String ligne;
+			
+			//System.out.println("chemin dico :" + dico_first_word);
 			while ((ligne = br.readLine()) != null) {
-				if (ligne.compareToIgnoreCase(word) == 0 && ligne.contains(currentPattern)) {
-					// System.out.println(ligne);
+				if (ligne.compareToIgnoreCase(word) == 0 && ligne.contains(currentPattern) && (!usedWords.contains(word))) {
+					usedWords.add(word);
 					br.close();
 					return true;
 				}
 			}
 			br.close();
+			
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e);
 		}
-
 		return false;
 	}
 
+	public boolean isUsedWord(String word) {
+		if (usedWords.contains(word)){return true;} else {return false;}
+	}
+	
 	public String genPattern() {
 		int randomNum = 0 + (int) (Math.random() * 25); // génération du
 														// nombre aleatoire
@@ -81,27 +105,15 @@ public class Dictionnary implements java.io.Serializable {
 		while (liste_mots.get(randomNum).length() < 3) {
 			randomNum = 0 + (int) (Math.random() * (nb_mot - 1));
 		}
-		return getPattern(liste_mots.get(randomNum));
+		this.currentPattern = getPattern(liste_mots.get(randomNum));
+		return this.currentPattern;
 	}
-
 	@Override
 	public String toString() {
 		return "Dictionnary [name=" + name + ", path=" + path + "]";
 	}
-
-	private String getPattern(String word) {
-		String pattern;
-		int nb_char_pattern = 2 + (int) (Math.random() * (3));
-		int randomNum = 0 + (int) (Math.random() * (word.length() - 4));
-		pattern = word.substring(randomNum, randomNum + nb_char_pattern);
-		return pattern;
-	}
-
 	public static void main(String[] args) {
-		// Dictionnary monDico = new
-		// Dictionnary("dictionnaireFrançais","dictionnaire");
-		// System.out.println(monDico);
-	}
 
+	}
 
 }
