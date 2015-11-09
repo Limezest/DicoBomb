@@ -88,7 +88,7 @@ public class Jeu {
 		frmDicobomb.getContentPane().add(panel, BorderLayout.EAST);
 		
 
-		ImageIcon logo = new ImageIcon("LogoDicoBomb.jpg");
+		ImageIcon logo = new ImageIcon("img/LogoDicoBomb.jpg");
 		frmDicobomb.setIconImage(logo.getImage());
 		
 		JTextArea textArea = new JTextArea();
@@ -160,31 +160,31 @@ public class Jeu {
 		panel_1.add(panel_9);
 		
 		
-		JLabel image2 = new JLabel( new ImageIcon( "Benoit.jpg"));
+		JLabel image2 = new JLabel( new ImageIcon( "img/Benoit.jpg"));
 		panel_2.setLayout(new BorderLayout(0, 0));
 		panel_2.add(image2);
 		
-		JLabel image3 = new JLabel( new ImageIcon( "Cyril.jpg"));
+		JLabel image3 = new JLabel( new ImageIcon( "img/Cyril.jpg"));
 		panel_3.setLayout(new BorderLayout(0, 0));
 		panel_3.add(image3);
 		
-		JLabel image4 = new JLabel( new ImageIcon( "Lens.jpg"));
+		JLabel image4 = new JLabel( new ImageIcon( "img/Lens.jpg"));
 		panel_4.setLayout(new BorderLayout(0, 0));
 		panel_4.add(image4);
 		
-		JLabel image5 = new JLabel( new ImageIcon( "Pierre.jpg"));
+		JLabel image5 = new JLabel( new ImageIcon( "img/Pierre.jpg"));
 		panel_5.setLayout(new BorderLayout(0, 0));
 		panel_5.add(image5);
 		
-		JLabel image6 = new JLabel( new ImageIcon( "Anonyme.jpg"));
+		JLabel image6 = new JLabel( new ImageIcon( "img/Anonyme.jpg"));
 		panel_6.setLayout(new BorderLayout(0, 0));
 		panel_6.add(image6);
 		
-		JLabel image8 = new JLabel( new ImageIcon( "Anonyme.jpg"));
+		JLabel image8 = new JLabel( new ImageIcon( "img/Anonyme.jpg"));
 		panel_8.setLayout(new BorderLayout(0, 0));
 		panel_8.add(image8);
 		
-		JLabel image9 = new JLabel( new ImageIcon( "Anonyme.jpg"));
+		JLabel image9 = new JLabel( new ImageIcon( "img/Anonyme.jpg"));
 		panel_9.setLayout(new BorderLayout(0, 0));
 		panel_9.add(image9);		
 		
@@ -298,7 +298,7 @@ public class Jeu {
 		panel_13.setBounds(82, 536, 60, 60);
 		panel_1.add(panel_13);
 		
-		JLabel image12 = new JLabel( new ImageIcon( "Bombe.jpg"));
+		JLabel image12 = new JLabel( new ImageIcon( "img/Bombe.jpg"));
 		panel_12.setLayout(new BorderLayout(0, 0));
 		panel_12.add(image12);
 		
@@ -306,11 +306,8 @@ public class Jeu {
 		panel_18.setBounds(207, 371, 250, 250);
 		panel_18.setVisible(false);
 		panel_1.add(panel_18);
-		
-		final Random rand = new Random();
-		String numPhoto =Integer.toString((int) (rand.nextInt(3-1+1)+1));
-		
-		final JLabel image18 = new JLabel( new ImageIcon( "sel".concat(numPhoto).concat(".jpg")));
+
+		final JLabel image18 = new JLabel();
 		panel_18.setLayout(new BorderLayout(0, 0));
 		panel_18.add(image18);
 		
@@ -320,8 +317,9 @@ public class Jeu {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	try {
+		    		final Random rand = new Random();
 		    		String numPhoto =Integer.toString((int) (rand.nextInt(5-1+1)+1));
-					image18.setIcon( new ImageIcon(ImageIO.read( new File("sel".concat(numPhoto).concat(".jpg")) ) ) );
+					image18.setIcon( new ImageIcon(ImageIO.read( new File("img/sel".concat(numPhoto).concat(".jpg")) ) ) );
 					panel_18.setVisible(true);
 				} catch (IOException e1) {
 					e1.printStackTrace();

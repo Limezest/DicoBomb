@@ -73,6 +73,7 @@ public class Choix_Serveur implements Runnable {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	try {
+		    		frame.setVisible(false);
 		    		new New_serveur();
 		    	} catch(Exception exception) {
 		    		exception.printStackTrace();

@@ -83,7 +83,7 @@ public class New_serveur implements Runnable {
 		
 		txtChoisissezLeMode = new JTextField();
 		txtChoisissezLeMode.setBorder(null);
-		txtChoisissezLeMode.setText("Choisissez le mode de jeu : ");
+		txtChoisissezLeMode.setText("Choisir le mode de jeu : ");
 		txtChoisissezLeMode.setForeground(Color.BLACK);
 		txtChoisissezLeMode.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtChoisissezLeMode.setEditable(false);

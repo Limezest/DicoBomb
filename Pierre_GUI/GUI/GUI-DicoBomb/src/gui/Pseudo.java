@@ -15,6 +15,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.Color;
 import javax.swing.Icon;
 
@@ -56,11 +59,11 @@ public class Pseudo {
 	private void initialize() {
 		frmDicobombpseudo = new JFrame();
 		frmDicobombpseudo.getContentPane().setBackground(Color.LIGHT_GRAY);
-		frmDicobombpseudo.setTitle("DicoBomb-Pseudo");
+		frmDicobombpseudo.setTitle("img/DicoBomb-Pseudo");
 		frmDicobombpseudo.setBounds(100, 100, 428, 215);
 		frmDicobombpseudo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDicobombpseudo.getContentPane().setLayout(null);
-		ImageIcon logo = new ImageIcon("LogoDicoBomb.jpg");
+		ImageIcon logo = new ImageIcon("img/LogoDicoBomb.jpg");
 		frmDicobombpseudo.setIconImage(logo.getImage());
 		
 		JButton btnFaisPter = new JButton("Fais p\u00E9ter!");
@@ -72,11 +75,35 @@ public class Pseudo {
 				//  TODO: Verifier adresse ? -> 
 				//  TODO: Verifier pseudo ? -> peut-etre generer pseudo aléatoire
 				//  TODO: Lancer Choix_Serveur.java
-//				Thread t1 = new Thread(new Choix_Serveur());
-//				t1.start();
+
 
 				try {
-					new Choix_Serveur();
+					
+					Scanner sc = new Scanner(System.in);
+				    int number;
+				    String ipString = textField_2.getText();
+				    String IPADDRESS_PATTERN = //Match adresse IP
+				            "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+
+				    Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
+				    Matcher matcher = pattern.matcher(ipString);
+				            if (matcher.find()) {
+				            	System.out.println("Connexion à " + ipString + " ...");
+				            	//  TODO: demander pseudo aléatoire
+				            }
+				            frmDicobombpseudo.setVisible(false);
+							new Choix_Serveur();
+
+//				    do {
+//				        System.out.println("Please enter a positive number!");
+//				        while (!sc.hasNext(p)) {
+//				            System.out.println("That's not a number!");
+//				            sc.next(); // this is important!
+//				        }
+//				        number = sc.nextInt();
+//				    } while (number <= 0);
+//				    System.out.println("Thank you! Got " + number);
+					
 				} catch (Exception exception) {
 					exception.printStackTrace();
 				}
@@ -151,12 +178,12 @@ public class Pseudo {
 		frmDicobombpseudo.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel Icon = new JLabel( new ImageIcon( "IconDicoBomb.jpg"));
+		JLabel Icon = new JLabel( new ImageIcon( "img/IconDicoBomb.jpg"));
 		Icon.setBackground(new Color(192, 192, 192));
 		panel.setLayout(new BorderLayout(0, 0));
 		panel.add(Icon, BorderLayout.NORTH);
 		
-		JLabel LogoCPE = new JLabel( new ImageIcon( "LogoCPE.jpg"));
+		JLabel LogoCPE = new JLabel( new ImageIcon("img/LogoCPE.jpg"));
 		LogoCPE.setBounds(0, 133, 50, 34);
 		frmDicobombpseudo.getContentPane().add(LogoCPE);
 		
