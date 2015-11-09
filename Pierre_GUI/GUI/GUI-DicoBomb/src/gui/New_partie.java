@@ -4,12 +4,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JComboBox;
 
 
-public class New_serveur implements Runnable {
+public class New_partie implements Runnable {
 
 	private JFrame frmNouvellePartie;
 	private JTextField txtEntrezUnNom;
@@ -20,22 +23,14 @@ public class New_serveur implements Runnable {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					New_serveur window = new New_serveur();
-					window.frmNouvellePartie.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		New_partie window = new New_partie();
+		window.frmNouvellePartie.setVisible(true);
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public New_serveur() {
+	public New_partie() {
 		initialize();
 	}
 
@@ -56,7 +51,21 @@ public class New_serveur implements Runnable {
 		
 		JButton button_1 = new JButton("Fais p\u00E9ter!");
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		button_1.setBounds(46, 148, 106, 25);
+		button_1.setBounds(46, 148, 120, 25);
+		button_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nomPartie = textField_2.getText();
+				System.out.println("nompartie " + nomPartie);
+				if (nomPartie == null)  {
+					System.out.println("non");
+				} else {
+					//  TODO: Fonction pour ajouter une partie
+					Thread tJeu = new Thread(new Jeu());
+					tJeu.start();
+				}
+			}
+		});
 		frmNouvellePartie.getContentPane().add(button_1);
 		
 		txtEntrezUnNom = new JTextField();
@@ -99,7 +108,7 @@ public class New_serveur implements Runnable {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					New_serveur window = new New_serveur();
+					New_partie window = new New_partie();
 					window.frmNouvellePartie.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

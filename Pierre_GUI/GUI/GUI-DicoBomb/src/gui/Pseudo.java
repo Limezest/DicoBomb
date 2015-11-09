@@ -24,7 +24,9 @@ import javax.swing.Icon;
 public class Pseudo {
 
 	private JFrame frmDicobombpseudo;
+	private JFrame frmMauvaiseAdresse;
 	private JTextField textField;
+	private JTextField textFieldMauvaiseAdresse;
 	private JTextField txtChoisissezUnPseudo;
 	private JTextField txtEntrezLadresseDu;
 	private JTextField textField_2;
@@ -57,18 +59,51 @@ public class Pseudo {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		ImageIcon logo = new ImageIcon("img/LogoDicoBomb.jpg");
+		
+		frmMauvaiseAdresse = new JFrame();
+		frmMauvaiseAdresse.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frmMauvaiseAdresse.setTitle("Erreur");
+		frmMauvaiseAdresse.setBounds(100, 100, 428, 215);
+		frmMauvaiseAdresse.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMauvaiseAdresse.getContentPane().setLayout(null);
+		frmMauvaiseAdresse.setIconImage(logo.getImage());
+		frmMauvaiseAdresse.setResizable(false);
+
+		
+		textFieldMauvaiseAdresse = new JTextField();
+		textFieldMauvaiseAdresse.setBorder(null);
+		textFieldMauvaiseAdresse.setForeground(Color.BLACK);
+		textFieldMauvaiseAdresse.setBackground(Color.LIGHT_GRAY);
+		textFieldMauvaiseAdresse.setEditable(false);
+		textFieldMauvaiseAdresse.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		textFieldMauvaiseAdresse.setText("Mauvaise adresse IP pour le serveur");
+		textFieldMauvaiseAdresse.setBounds(71, 66, 350, 22);
+		
+		
+		JButton btnRetour = new JButton("Oups !");
+		btnRetour.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnRetour.setBounds(236, 109, 120, 25);
+		btnRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmMauvaiseAdresse.setVisible(false);
+			}
+		});
+		frmMauvaiseAdresse.getContentPane().add(textFieldMauvaiseAdresse);
+		frmMauvaiseAdresse.getContentPane().add(btnRetour);
+		
 		frmDicobombpseudo = new JFrame();
 		frmDicobombpseudo.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frmDicobombpseudo.setTitle("img/DicoBomb-Pseudo");
 		frmDicobombpseudo.setBounds(100, 100, 428, 215);
 		frmDicobombpseudo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDicobombpseudo.getContentPane().setLayout(null);
-		ImageIcon logo = new ImageIcon("img/LogoDicoBomb.jpg");
 		frmDicobombpseudo.setIconImage(logo.getImage());
 		
 		JButton btnFaisPter = new JButton("Fais p\u00E9ter!");
 		btnFaisPter.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnFaisPter.setBounds(57, 109, 106, 25);
+		btnFaisPter.setBounds(236, 109, 120, 25);
 		btnFaisPter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -87,23 +122,18 @@ public class Pseudo {
 
 				    Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
 				    Matcher matcher = pattern.matcher(ipString);
-				            if (matcher.find()) {
-				            	System.out.println("Connexion à " + ipString + " ...");
-				            	//  TODO: demander pseudo aléatoire
-				            }
-				            frmDicobombpseudo.setVisible(false);
-							new Choix_Serveur();
-
-//				    do {
-//				        System.out.println("Please enter a positive number!");
-//				        while (!sc.hasNext(p)) {
-//				            System.out.println("That's not a number!");
-//				            sc.next(); // this is important!
-//				        }
-//				        number = sc.nextInt();
-//				    } while (number <= 0);
-//				    System.out.println("Thank you! Got " + number);
-					
+		            if (matcher.find()) {
+		            	System.out.println("Connexion à " + ipString + " ...");
+		            	
+		            	if (textField.getText() == null) {
+			            	//  TODO: demander pseudo aléatoire
+		            	}
+		            	
+			            frmDicobombpseudo.setVisible(false);
+			            new Choix_Serveur();
+		            } else {
+		            	frmMauvaiseAdresse.setVisible(true);
+		            }
 				} catch (Exception exception) {
 					exception.printStackTrace();
 				}
@@ -111,11 +141,6 @@ public class Pseudo {
 		});
 		
 		frmDicobombpseudo.getContentPane().add(btnFaisPter);
-		
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAnnuler.setBounds(236, 109, 97, 25);
-		frmDicobombpseudo.getContentPane().add(btnAnnuler);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -142,8 +167,8 @@ public class Pseudo {
 		txtChoisissezUnPseudo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtChoisissezUnPseudo.setText("Choisir un pseudo :");
 		txtChoisissezUnPseudo.setBounds(71, 66, 152, 22);
-		frmDicobombpseudo.getContentPane().add(txtChoisissezUnPseudo);
 		txtChoisissezUnPseudo.setColumns(10);
+		frmDicobombpseudo.getContentPane().add(txtChoisissezUnPseudo);
 		
 		txtEntrezLadresseDu = new JTextField();
 		txtEntrezLadresseDu.setBorder(null);

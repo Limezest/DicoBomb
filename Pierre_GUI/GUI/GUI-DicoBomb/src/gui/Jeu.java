@@ -29,7 +29,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.Color;
 
-public class Jeu {
+public class Jeu implements Runnable {
 
 	private JFrame frmDicobomb;
 	private JTextField textField;
@@ -49,19 +49,8 @@ public class Jeu {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Jeu window = new Jeu();
-					window.frmDicobomb.setVisible(true);
-					window.frmDicobomb.setLocationRelativeTo(null);
-					window.frmDicobomb.setResizable(false);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		Jeu window = new Jeu();
+		window.frmDicobomb.setVisible(true);
 	}
 
 	/**
@@ -97,6 +86,9 @@ public class Jeu {
 		JPanel panel_1 = new JPanel();
 		frmDicobomb.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
+
+		frmDicobomb.setLocationRelativeTo(null);
+		frmDicobomb.setResizable(false);
 		
 		textField = new JTextField();
 		textField.setBounds(745, 777, 433, 46);
@@ -364,5 +356,20 @@ public class Jeu {
 		});
 		panel_1.add(textField_9);
 		
+	}
+
+	@Override
+	public void run() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Jeu window = new Jeu();
+					window.frmDicobomb.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

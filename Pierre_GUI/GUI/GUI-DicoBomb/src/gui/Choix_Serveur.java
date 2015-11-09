@@ -30,6 +30,8 @@ public class Choix_Serveur implements Runnable {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Choix_Serveur window = new Choix_Serveur();
+		window.frame.setVisible(true);
 	}
 
 	/**
@@ -67,33 +69,23 @@ public class Choix_Serveur implements Runnable {
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNouveauServeur = new JButton("Nouveau serveur");
-		btnNouveauServeur.addActionListener( new ActionListener()
+		JButton btnNewPartie = new JButton("Nouvelle partie");
+		btnNewPartie.addActionListener( new ActionListener()
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	try {
-		    		frame.setVisible(false);
-		    		new New_serveur();
+//		    		frame.setVisible(false);
+		    		Thread t = new Thread(new New_partie());
+		    		t.start();
 		    	} catch(Exception exception) {
 		    		exception.printStackTrace();
 		    	}
 		    }		   
 		});
-		btnNouveauServeur.setBounds(87, 13, 154, 25);
-		frame.getContentPane().add(btnNouveauServeur);
+		btnNewPartie.setBounds(87, 13, 154, 25);
+		frame.getContentPane().add(btnNewPartie);
 		
-//		JButton btnActualiser = new JButton("Actualiser");
-//		btnActualiser.addActionListener( new ActionListener()
-//		{
-//		    public void actionPerformed(ActionEvent e)
-//		    {
-//				model.addElement("B");
-//				JList<String> list = new JList(model);
-//		    }		   
-//		});
-//		btnActualiser.setBounds(194, 13, 97, 25);
-//		frame.getContentPane().add(btnActualiser);
 		
 		ListSelectionListener listSelectionListener = new ListSelectionListener() {
 		      public void valueChanged(ListSelectionEvent listSelectionEvent) {
