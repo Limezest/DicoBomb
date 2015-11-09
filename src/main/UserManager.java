@@ -6,30 +6,32 @@ public class UserManager {
 	// Attributs
 	private static ArrayList<User> users = new ArrayList<User>();
 
-	// Methodes : ManagerInterface
+	// Methodes : Manager
 	public static ArrayList<User> getItems() {
 		return users;
 	}
 
-	public static void addItem(String username) {
-		users.add(new User(username));
-		// System.out.println("Ajout de :"+username);
-		// System.out.println("Ajout de :"+name);
+	public static boolean addItem(String username,String ip) {
+		if(!(users.contains(getItem(username)))){
+			users.add(new User(username,ip));
+		}
+		return users.contains(getItem(username));
 	}
 
-	public static void delItem(String username) {
+	public static boolean delItem(String username) {
 		users.remove(getItem(username));
+		return (!users.contains(getItem(username)));
 	}
 
 	public static boolean itemExist(String username) {
-		String itemName;
-		for (User item : users) {
-			itemName = item.getName();
-			if (itemName.compareTo(username) == 0) {
-				return true;
-			}
-		}
-		return false;
+//		String itemName;
+//		for (User item : users) {
+//			itemName = item.getName();
+//			if (itemName.compareTo(username) == 0) {
+//				return true;
+//			}
+//		}
+		return users.contains(getItem(username));
 	}
 
 	public static User getItem(String username) {
@@ -43,4 +45,18 @@ public class UserManager {
 		return null;
 	}
 	// Methodes : Autres
+	public static boolean changeName(String username, String newname){
+		if (users.contains(getItem(newname))){
+			return false;
+		}
+		else {
+			getItem(username).setName(newname);
+			return true;
+		}
+	}
+
+	public static String randomName(){
+		//TO DO : 
+		return "OK";
+	}
 }

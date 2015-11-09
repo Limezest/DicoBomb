@@ -3,15 +3,12 @@ package main;
 import java.util.ArrayList;
 
 public class Game implements java.io.Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7605941372064698361L;
 	// Attributs
 	private ArrayList<String> usersInGame = new ArrayList<String>();
 	private Dictionnary dico;
 	private String name;
 	private int currentUser;
+	private static final long serialVersionUID = 7605941372064698361L;
 
 	// Contructeur
 	public Game(String gamename, String dicoName) {
