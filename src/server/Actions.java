@@ -8,5 +8,8 @@ public enum Actions {
 	startGame,
 	nextPlayer,
 	wordNotExist,
-	newLive;
+	newLive,
+	timeElapsed,
+	hoteQuit,
+	sendMessage;
 }

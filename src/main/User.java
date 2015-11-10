@@ -19,6 +19,7 @@ public class User implements java.io.Serializable {
 	public User(String username, String ip) {
 		super();
 		this.username = username;
+		this.gamename = "";
 		this.ip = ip;
 		this.live = 0;
 		this.usedChars = new Hashtable<Character, Integer>();
@@ -33,12 +34,14 @@ public class User implements java.io.Serializable {
 		return gamename;
 	}
 
-	public void setGame(String gamename) {
+	public boolean setGame(String gamename) {
 		this.gamename = gamename;
+		return this.gamename.equals(gamename);
 	}
 
-	public void setName(String newname) {
+	public boolean setName(String newname) {
 		this.username = newname;
+		return this.username.equals(newname);
 	}
 
 	public String getIP() {
@@ -66,7 +69,7 @@ public class User implements java.io.Serializable {
 				usedChars.clear();
 
 				// RMI
-				ServerRMIClient.invokeRMIClient(ip, Actions.newLive, "Nouvelle vie");
+				ServerRMIClient.invokeRMIClient(ip, Actions.newLive, String.valueOf(live));
 			}
 		}
 	}

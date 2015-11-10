@@ -30,7 +30,6 @@ public class Bomb implements Runnable {
 		t.start();
 		this.setTempsRestant(N);
 		this.setTemps(N);
-		sc.
 	}
 
 	public Bomb() {

@@ -10,7 +10,7 @@ public class cmdLineClient implements Runnable {
 	public void run() {
 		try {
 				Scanner sc = new Scanner(System.in);
-				Client.crmic.nextPlayer("Partie1",  sc.nextLine());
+				Client.crmic.nextPlayer(Client.mygame,  sc.nextLine());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

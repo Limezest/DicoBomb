@@ -3,25 +3,27 @@ package client;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.Scanner;
 
 public class Client {
 	public static ClientRMIServer crmis;
 	public static ClientRMIClient crmic;
 	public static String myusername = null;
+	public static String mygame = null;
 
-	public Client() {
-		newServer();
-		newClient("127.0.0.1");
+	public Client(String ip,Integer port) {
+		newServer(port);
+		newClient(ip);
 	}
 
-	public void newServer() {
+	public void newServer(Integer port) {
 		try {
 			SecurityManager security = System.getSecurityManager();
-			// System.setProperty("java.rmi.server.hostname", "127.0.0.1");
+			System.setProperty("java.rmi.server.hostname", "127.0.0.1");
 			if (security != null) {
 				System.setSecurityManager(new java.lang.SecurityManager());
 			}
-			LocateRegistry.createRegistry(1089);
+			LocateRegistry.createRegistry(port);
 			crmis = new ClientRMIServer();
 			Naming.rebind("Dicobomb_client", crmis);
 			System.out.println("Serveur pret.");
@@ -44,7 +46,7 @@ public class Client {
 			Client.crmic.newGame("Partie1", "Dico", "benoit");
 			Client.crmic.joinGame("benoit", "Partie1");
 			Client.myusername = "benoit";
-			// Client.crmic.startGame("Partie1");
+			Client.crmic.quitGame("benoit", "Partie1");
 
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -54,19 +56,17 @@ public class Client {
 	public static void client2() {
 		try {
 			Client.crmic.newUser("pierre");
-			Client.crmic.joinGame("pierre", "Partie1");
 			Client.myusername = "pierre";
-			Client.crmic.startGame("Partie1");
-
+			Client.crmic.joinGame("pierre", "Partie1");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void main(String[] args) {
-		new Client();
+	public static void main(String[] args) throws RemoteException {
+		Client client = new Client("127.0.0.1",1088);
 		client1();
-		// client2();
+		//client2();
 
 	}
 }
