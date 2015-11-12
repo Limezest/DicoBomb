@@ -2,10 +2,12 @@ package server;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
+import java.util.Hashtable;
 
 public class Server {
-	private static ServerRMI srmi;
-
+	public static ServerRMI srmi;
+	public static Hashtable<String, ServerRMIClient> hashClient = new Hashtable<String, ServerRMIClient>();
+	
 	public Server() {
 		this.newServer();
 	}
@@ -19,7 +21,7 @@ public class Server {
 	public void newServer() {
 		try {
 			SecurityManager security = System.getSecurityManager();
-			// System.setProperty("java.rmi.server.hostname", listenIP);
+			System.setProperty("java.rmi.server.hostname", "127.0.0.1");
 			if (security != null) {
 				System.setSecurityManager(new java.lang.SecurityManager());
 			}
@@ -34,6 +36,7 @@ public class Server {
 	}
 
 	public static void main(String[] args) {
+		System.setProperty("java.net.preferIPv4Stack" , "true");
 		new Server();
 	}
 }

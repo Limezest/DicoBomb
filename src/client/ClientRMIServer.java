@@ -7,21 +7,9 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 	private static final long serialVersionUID = 1L;
 	private Thread t;
 
-	protected ClientRMIServer() throws RemoteException {
+	public ClientRMIServer() throws RemoteException {
 		super();
 	}
-
-	@Override
-	public void newPattern(String word) throws RemoteException {
-		System.out.println("Le pattern est :" + word);
-	}
-
-	@Override
-	public void changeCurrentUser(String username) throws RemoteException {
-		// TODO Auto-generated method stub
-		System.out.println("Le joueur est :" + username);
-	}
-
 	public void userJoinGame(String username) throws RemoteException {
 		System.out.println("Un joueur a rejoint la partie: " + username);
 	}
@@ -31,23 +19,28 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 	}
 
 	public void startGame(String message) throws RemoteException {
-		System.out.println("Lancement de la partie, on commence avec :" + message.split(",")[0] + " avec le pattern :"
-				+ message.split(",")[1]);
-		if (Client.myusername.compareTo(message.split(",")[0]) == 0) {
+		// 0 : username ; 1 : pattern
+		String username = message.split(",")[0];
+		String pattern= message.split(",")[1];
+		System.out.println("Lancement de la partie, on commence avec :" + username + " avec le pattern :"+ pattern);
+		if (Client.myusername.compareTo(username) == 0) {
 			t = new Thread(new cmdLineClient());
 			t.start();
 		} else {
-			System.out.println("Ce n'est à toi de jouer");
+			System.out.println("Ce n'est pas à toi de jouer");
 		}
 	}
 
 	public void nextPlayer(String message) throws RemoteException {
-		System.out.println("C'est au tour de :" + message.split(",")[0] + " avec le pattern :" + message.split(",")[1]);
-		if (Client.myusername.compareTo(message.split(",")[0]) == 0) {
+		// 0 : username ; 1 : pattern
+		String username = message.split(",")[0];
+		String pattern= message.split(",")[1];
+		System.out.println("C'est au tour de :" +username+ " avec le pattern :" +pattern);
+		if (Client.myusername.compareTo(username) == 0) {
 			t = new Thread(new cmdLineClient());
 			t.start();
 		} else {
-			System.out.println("Ce n'est à toi de jouer");
+			System.out.println("Ce n'est pas à toi de jouer");
 		}
 	}
 
@@ -55,16 +48,26 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 		System.out.println(message);
 		t = new Thread(new cmdLineClient());
 		t.start();
-
 	}
 
-	public void newLive(String message) throws RemoteException {
-		System.out.println(message);
+	public void newLive(String live) throws RemoteException {
+		System.out.println("Vous avez une nouvelle vie, vous en avez :"+live);
 	}
 
-	@Override
 	public void timeElapsed(String message) throws RemoteException {
-		System.out.println("Temps ecoulé - fin de la partie");
+		System.out.println("Temps ecoulé - fin de la partie | "+message+" a perdu");
 		
+	}
+
+	public void hoteQuit(String message) throws RemoteException {
+		System.out.println("Changement d'hote : "+message+" est le nouvel hote");
+		
+	}
+
+	public void receiveMessage(String message) throws RemoteException {
+		// 0 : sender ; 1 : message
+		String sender = message.split(",")[0];
+		String string= message.split(",")[1];
+		System.out.println("message de "+sender+" :"+string);
 	}
 }

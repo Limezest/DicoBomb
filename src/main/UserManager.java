@@ -14,13 +14,23 @@ public class UserManager {
 	public static boolean addItem(String username,String ip) {
 		if(!(users.contains(getItem(username)))){
 			users.add(new User(username,ip));
+			System.out.println("Ajout de l'utilisateur :"+username);
 		}
-		return users.contains(getItem(username));
+		else {
+			System.out.println("Utilisateur existe deja :"+username);
+		}
+		return itemExist(username);
 	}
 
 	public static boolean delItem(String username) {
-		users.remove(getItem(username));
-		return (!users.contains(getItem(username)));
+		if(users.contains(getItem(username))){
+			users.remove(getItem(username));
+			System.out.println("Suppression de l'utilisateur :"+username);
+		}
+		else {
+			System.out.println("Utilisateur n'existe pas :"+username);
+		}
+		return (!itemExist(username));
 	}
 
 	public static boolean itemExist(String username) {
@@ -39,17 +49,26 @@ public class UserManager {
 	}
 	// Methodes : Autres
 	public static boolean changeName(String username, String newname){
-		if (users.contains(getItem(newname))){
+		if (itemExist(username)){
+			System.out.println("Impossible de changer le nom - Utilisateur existe deja");
 			return false;
 		}
 		else {
-			getItem(username).setName(newname);
-			return true;
+			System.out.println("Changement de nom de "+username+ "en "+newname);
+			return getItem(username).setName(newname);
 		}
 	}
 
 	public static String randomName(){
-		//TO DO : 
-		return "OK";
+		int i=0;
+		while (i<1000){
+			System.out.println("guest"+i);
+			if (!(itemExist("guest"+i))){
+				return "guest"+i;
+			}
+			i++;
+		}
+		return null;
 	}
+
 }

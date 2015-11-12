@@ -38,12 +38,18 @@ public class ClientRMIClient {
 
 	}
 
-	public void userExitGame(String username) throws RemoteException {
-		this.mhi.userExitGame(username);
+	public void userExit(String username) throws RemoteException {
+		System.out.println("userExit"+this.mhi.userExit(username));
 	}
 
 	public void joinGame(String username, String gamename) throws RemoteException {
-		this.mhi.joinGame(username, gamename);
+		if (this.mhi.joinGame(username, gamename)){
+			Client.mygame=gamename;
+			System.out.println("joinGame: true");
+		}
+		else {
+			System.out.println("joinGame: false");
+		}
 	}
 
 	public ArrayList<User> getUsers() throws RemoteException {
@@ -54,24 +60,34 @@ public class ClientRMIClient {
 		return this.mhi.getGames();
 	}
 
-	public void userQuitGame(String username, String gamename) throws RemoteException {
-		this.mhi.userQuitGame(username, gamename);
+	public void quitGame(String username, String gamename) throws RemoteException {
+		if (this.mhi.quitGame(username, gamename)){
+			Client.mygame=gamename;
+			System.out.println("userQuitGame: true");
+		}
+		else {
+			System.out.println("userQuitGame: false");
+		}
 	}
 
-	public boolean newUser(String username) throws RemoteException {
-		return this.mhi.newUser(username);
+	public void newUser(String username) throws RemoteException {
+		System.out.println("newUser:"+this.mhi.newUser(username));
 	}
 
 	public void newGame(String gamename, String dico,String creator) throws RemoteException {
-		this.mhi.newGame(gamename, dico,creator);
+		System.out.println("newGame:"+this.mhi.newGame(gamename, dico,creator));
 	}
 
 	public void nextPlayer(String gamename, String word) throws RemoteException {
-		this.mhi.nextPlayer(gamename, word);
+		System.out.println("nextPlayer:"+this.mhi.nextPlayer(gamename, word));
 	}
 
 	public void startGame(String gamename) throws RemoteException {
-		this.mhi.startGame(gamename);
+		System.out.println("startGame:"+this.mhi.startGame(gamename));
+	}
+	
+	public void sendMessage(String gamename,String sender,String message) throws RemoteException {
+		this.mhi.sendMessage(gamename, sender, message);
 	}
 
 	public static void main(String[] argv) throws UnknownHostException {
