@@ -69,7 +69,7 @@ public class User implements java.io.Serializable {
 				usedChars.clear();
 
 				// RMI
-				ServerRMIClient.invokeRMIClient(ip, Actions.newLive, String.valueOf(live));
+				//ServerRMIClient.invokeRMIClient(ip, Actions.newLive, String.valueOf(live));
 			}
 		}
 	}

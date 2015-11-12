@@ -1,6 +1,5 @@
 package client;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -35,7 +34,6 @@ public class ClientRMIClient {
 			System.out.print("Erreur RMI :");
 			e.printStackTrace();
 		}
-
 	}
 
 	public void userExit(String username) throws RemoteException {
@@ -70,10 +68,14 @@ public class ClientRMIClient {
 		}
 	}
 
-	public void newUser(String username) throws RemoteException {
-		System.out.println("newUser:"+this.mhi.newUser(username));
+	public boolean newUser(String username) throws RemoteException {
+		return this.mhi.newUser(username);
 	}
 
+	public String newRandomUser() throws RemoteException{
+		return this.mhi.newRandomUser();	
+	}
+	
 	public void newGame(String gamename, String dico,String creator) throws RemoteException {
 		System.out.println("newGame:"+this.mhi.newGame(gamename, dico,creator));
 	}

@@ -19,7 +19,7 @@ public class Client {
 	public void newServer(Integer port) {
 		try {
 			SecurityManager security = System.getSecurityManager();
-			System.setProperty("java.rmi.server.hostname", "127.0.0.1");
+			System.setProperty("java.rmi.server.hostname", "10.0.0.65");
 			if (security != null) {
 				System.setSecurityManager(new java.lang.SecurityManager());
 			}

@@ -21,7 +21,7 @@ public class Server {
 	public void newServer() {
 		try {
 			SecurityManager security = System.getSecurityManager();
-			System.setProperty("java.rmi.server.hostname", "134.214.50.27");
+			System.setProperty("java.rmi.server.hostname", "10.0.0.59");
 			if (security != null) {
 				System.setSecurityManager(new java.lang.SecurityManager());
 			}

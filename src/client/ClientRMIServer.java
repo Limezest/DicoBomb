@@ -3,11 +3,13 @@ package client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import gui.Dicobomb;
+
 public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInterface {
 	private static final long serialVersionUID = 1L;
 	private Thread t;
 
-	protected ClientRMIServer() throws RemoteException {
+	public ClientRMIServer() throws RemoteException {
 		super();
 	}
 	public void userJoinGame(String username) throws RemoteException {
@@ -24,8 +26,8 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 		String pattern= message.split(",")[1];
 		System.out.println("Lancement de la partie, on commence avec :" + username + " avec le pattern :"+ pattern);
 		if (Client.myusername.compareTo(username) == 0) {
-			t = new Thread(new cmdLineClient());
-			t.start();
+			//t = new Thread(new cmdLineClient());
+			//t.start();
 		} else {
 			System.out.println("Ce n'est pas à toi de jouer");
 		}
@@ -37,8 +39,8 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 		String pattern= message.split(",")[1];
 		System.out.println("C'est au tour de :" +username+ " avec le pattern :" +pattern);
 		if (Client.myusername.compareTo(username) == 0) {
-			t = new Thread(new cmdLineClient());
-			t.start();
+			//t = new Thread(new cmdLineClient());
+			//t.start();
 		} else {
 			System.out.println("Ce n'est pas à toi de jouer");
 		}
@@ -46,8 +48,8 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 
 	public void wordNotExist(String message) throws RemoteException {
 		System.out.println(message);
-		t = new Thread(new cmdLineClient());
-		t.start();
+		//t = new Thread(new cmdLineClient());
+		//t.start();
 	}
 
 	public void newLive(String live) throws RemoteException {
@@ -68,6 +70,7 @@ public class ClientRMIServer extends UnicastRemoteObject implements ClientRMInte
 		// 0 : sender ; 1 : message
 		String sender = message.split(",")[0];
 		String string= message.split(",")[1];
+		Dicobomb.dicobomb.getJeu().addMessage(sender, string);
 		System.out.println("message de "+sender+" :"+string);
 	}
 }

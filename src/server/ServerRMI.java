@@ -20,11 +20,8 @@ public class ServerRMI extends UnicastRemoteObject implements ServerRMInterface 
 
 	public boolean newUser(String username) throws RemoteException {
 		try {
-			if (UserManager.addItem(username,getClientHost())){
-				ServerRMIClient.addClient(getClientHost());
-				return true;
-			}
-			else {return false;}
+			ServerRMIClient.addClient(getClientHost());
+			return UserManager.addItem(username,getClientHost());
 		}catch(Exception e){
 			return false;
 		}
